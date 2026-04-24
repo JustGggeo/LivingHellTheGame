@@ -14,10 +14,7 @@ Room::Room(int width, int height, RoomType type)
 void Room::GenerateBasicLayout() {
   for (int y = 0; y < height_; y++) {
     for (int x = 0; x < width_; x++) {
-      TileType t = (x == 0 || x == width_ - 1 || y == 0 || y == height_ - 1)
-                       ? TileType::kWall
-                       : TileType::kFloor;
-      tiles_[y * width_ + x] = Tile(x, y, t);
+      tiles_[y * width_ + x] = Tile(x, y, TileType::kWall);
     }
   }
 }

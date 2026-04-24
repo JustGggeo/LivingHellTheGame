@@ -88,7 +88,7 @@ void TurnSystem::ProcessPlayerAction(Action action, Player& player,
 
 void TurnSystem::ResolveEnemies(Player& player, Room& room) {
   for (auto& enemy : room.GetEnemies()) {
-    if (enemy->IsAlive()) enemy->Act(player);
+    if (enemy->IsAlive()) enemy->Act(player, room);
   }
 }
 

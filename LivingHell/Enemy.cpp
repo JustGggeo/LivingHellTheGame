@@ -1,6 +1,7 @@
 #include "Enemy.h"
 
 #include "Player.h"
+#include "Room.h"
 
 Enemy::Enemy(int x, int y, int health, int damage, int attack_range,
              int move_speed, int heat_damage, int exp_reward,
@@ -19,7 +20,7 @@ void Enemy::TakeDamage(int dmg) {
   if (!IsAlive()) state_ = EnemyState::kDead;
 }
 
-void Enemy::Act(Player& player) {
+void Enemy::Act(Player& player, Room& room) {
   if (state_ == EnemyState::kDead) return;
   UpdateState(player);
   switch (state_) {
@@ -27,7 +28,7 @@ void Enemy::Act(Player& player) {
       Patrol();
       break;
     case EnemyState::kChasing:
-      ChasePlayer(player);
+      ChasePlayer(player, room);
       break;
     case EnemyState::kAttacking:
       AttackPlayer(player);
@@ -52,9 +53,8 @@ void Enemy::Patrol() {
   // Пока заглушка — позже добавим случайное перемещение
 }
 
-void Enemy::ChasePlayer(Player& player) {
-  int dx = 0;
-  int dy = 0;
+void Enemy::ChasePlayer(Player& player, Room& room) {
+  int dx = 0, dy = 0;
   if (player.GetX() > x_)
     dx = 1;
   else if (player.GetX() < x_)
@@ -63,8 +63,14 @@ void Enemy::ChasePlayer(Player& player) {
     dy = 1;
   else if (player.GetY() < y_)
     dy = -1;
-  x_ += dx;
-  y_ += dy;
+
+  int new_x = x_ + dx;
+  int new_y = y_ + dy;
+  if (new_x >= 0 && new_x < room.GetWidth() && new_y >= 0 &&
+      new_y < room.GetHeight() && room.GetTile(new_x, new_y).IsWalkable()) {
+    x_ = new_x;
+    y_ = new_y;
+  }
 }
 
 void Enemy::AttackPlayer(Player& player) {
