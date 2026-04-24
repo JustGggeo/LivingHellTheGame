@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="LivingHell/LivingHell.vcxproj" Id="0f48c803-bcff-426e-930d-e972347cb46c" />
+</Solution>
