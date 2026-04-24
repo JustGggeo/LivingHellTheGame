@@ -32,8 +32,15 @@ void GameState::ProcessAction(Action action) {
 }
 
 void GameState::CheckStatus() {
+  if (status_ != GameStatus::kPlaying)
+    return;  // <-- добавить, чтоб не перезаписывать статус
+
   if (turn_system_.IsGameOver()) {
     status_ = GameStatus::kDefeat;
+    return;
+  }
+  if (turn_system_.PlayerReachedExit()) {  // <-- добавить
+    status_ = GameStatus::kVictory;
     return;
   }
   if (current_room_->IsCleared() && current_circle_ >= 3) {
@@ -96,28 +103,33 @@ void GameState::ApplyGeneratedRooms() {
     player_ = Player(start->x + 1, start->y + 1);
   }
 
-  const RoomPlacement* exit = level_generator_.GetExitRoom();
-  if (exit) {
-    current_room_
-        ->GetTile(exit->x + exit->width / 2, exit->y + exit->height / 2)
-        .SetType(TileType::kExit);
-  }
-
-  // Соединяем комнаты коридорами
   for (int i = 1; i < static_cast<int>(placements.size()); i++) {
     int x1 = placements[i - 1].x + placements[i - 1].width / 2;
     int y1 = placements[i - 1].y + placements[i - 1].height / 2;
     int x2 = placements[i].x + placements[i].width / 2;
     int y2 = placements[i].y + placements[i].height / 2;
 
-    // Горизонтальный коридор
     int step_x = (x2 > x1) ? 1 : -1;
     for (int x = x1; x != x2; x += step_x)
       current_room_->GetTile(x, y1).SetType(TileType::kFloor);
 
-    // Вертикальный коридор
     int step_y = (y2 > y1) ? 1 : -1;
     for (int y = y1; y != y2 + step_y; y += step_y)
       current_room_->GetTile(x2, y).SetType(TileType::kFloor);
+  }
+
+  const RoomPlacement* exit = level_generator_.GetExitRoom();
+  if (exit) {
+    current_room_
+        ->GetTile(exit->x + exit->width / 2, exit->y + exit->height / 2)
+        .SetType(TileType::kExit);
+  } else {
+    bool placed = false;
+    for (int y = 27; y >= 2 && !placed; y--)
+      for (int x = 27; x >= 2 && !placed; x--)
+        if (current_room_->GetTile(x, y).GetType() == TileType::kFloor) {
+          current_room_->GetTile(x, y).SetType(TileType::kExit);
+          placed = true;
+        }
   }
 }

@@ -1,11 +1,2 @@
-﻿  Enemy.cpp
-  GameDatabase.cpp
-  GameState.cpp
-  LevelGenerator.cpp
-  Renderer.cpp
-C:\Users\JustGeo\source\repos\LivingHell\LivingHell\Renderer.cpp(5,21): warning C4834: discarding return value of function with [[nodiscard]] attribute
-  Room.cpp
-  TurnSystem.cpp
-  main.cpp
-  Generating Code...
+﻿  GameState.cpp
   LivingHell.vcxproj -> C:\Users\JustGeo\source\repos\LivingHell\x64\Debug\LivingHell.exe

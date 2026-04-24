@@ -4,7 +4,8 @@ TurnSystem::TurnSystem(int timer_limit)
     : turn_count_(0),
       timer_limit_(timer_limit),
       current_timer_(timer_limit),
-      game_over_(false) {}
+      game_over_(false),
+      reached_exit_(false) {}
 
 void TurnSystem::ProcessTurn(Action action, Player& player, Room& room) {
   if (game_over_) return;
@@ -81,6 +82,10 @@ void TurnSystem::ProcessPlayerAction(Action action, Player& player,
 
   if (tile_ok && !enemy_on_tile) {
     player.Move(dx, dy);
+    // --- добавить проверку выхода ---
+    if (room.GetTile(new_x, new_y).GetType() == TileType::kExit) {
+      reached_exit_ = true;
+    }
   } else {
     player.AddCoreHeat(1);
   }
@@ -103,3 +108,4 @@ bool TurnSystem::IsTimeOut() const { return current_timer_ <= 0; }
 bool TurnSystem::IsGameOver() const { return game_over_; }
 int TurnSystem::GetTurnCount() const { return turn_count_; }
 int TurnSystem::GetCurrentTimer() const { return current_timer_; }
+bool TurnSystem::PlayerReachedExit() const { return reached_exit_; }
