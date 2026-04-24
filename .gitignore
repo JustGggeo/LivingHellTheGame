@@ -4,17 +4,4 @@
 *.suo
 *.aps
 
-# Build output
-x64/
-Debug/
-Release/
-*.obj
-*.pdb
-*.ilk
-*.idb
-*.ipdb
-*.iobj
-*.exe
-*.recipe
-
 !SFML-3.0.2/
