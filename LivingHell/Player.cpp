@@ -1,13 +1,83 @@
 #include "Player.h"
+#include "HeatPurge.h"
+#include "Abilities.h"
 
-Player::Player(int x, int y)
+Player::Player(int x, int y) 
     : Entity(x, y, 5),
       core_heat_(0),
       max_core_heat_(3),
       level_(1),
       exp_(0),
       attack_range_(1),
-      inventory_(12) {}
+      inventory_(12) 
+{
+  
+    UnlockAbility(std::make_unique<BasicAttack>());
+  
+} 
+
+
+
+void Player::LevelUp() {
+  if (level_ >= 4) return;
+  level_++;
+  UpdateStatsForLevel();
+
+  switch (level_) {
+    case 2:
+      UnlockAbility(std::make_unique<Emission>());
+      break;
+    case 3:
+      UnlockAbility(std::make_unique<Phasing>());
+      UnlockAbility(std::make_unique<Deformation>());
+      break;
+    case 4:
+      UnlockAbility(std::make_unique<Disintegration>());
+      break;
+  }
+}
+
+
+void Player::UnlockAbility(std::unique_ptr<Ability> ability) {
+  abilities_.push_back(std::move(ability));
+}
+
+bool Player::UseAbility(int index, Room& room) {
+  if (index < 0 || index >= (int)abilities_.size()) return false;
+  if (!abilities_[index]->IsReady()) return false;
+  abilities_[index]->Activate(*this, room);
+  return true;
+}
+
+void Player::TickAbilities() {
+  for (auto& a : abilities_) a->OnTurnPassed();
+}
+
+const std::vector<std::unique_ptr<Ability>>& Player::GetAbilities() const {
+  return abilities_;
+}
+
+bool Player::HasEmissionBuff() const { return emission_buff_;
+}
+
+void Player::SetEmissionBuff(bool val) { emission_buff_ = val;
+}
+
+void Player::ClearEmissionBuff() { emission_buff_ = false; }
+
+int Player::GetAttackDamageBonus() const { return attack_damage_bonus_; 
+}
+
+int Player::GetAttackRangeBonus() const { return attack_range_bonus_;
+}
+
+void Player::AddAttackDamageBonus(int val) { attack_damage_bonus_ += val; 
+}
+
+void Player::AddAttackRangeBonus(int val) { attack_range_bonus_ += val;
+}
+
+
 
 void Player::TakeDamage(int dmg) {
   Entity::TakeDamage(dmg);
@@ -40,6 +110,9 @@ void Player::LevelUp() {
   if (level_ >= 4) return;
   level_++;
   UpdateStatsForLevel();
+  // выдаём способность за уровень
+  if (level_ == 2) UnlockAbility(std::make_unique<HeatPurge>());
+  // level_ == 3, 4 заделаю позже
 }
 
 void Player::UpdateStatsForLevel() {
@@ -71,3 +144,4 @@ int Player::GetExp() const { return exp_; }
 int Player::GetAttackRange() const { return attack_range_; }
 
 Inventory& Player::GetInventory() { return inventory_; }
+

@@ -1,5 +1,956 @@
-﻿  main.cpp
+﻿  Abilities.cpp
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'Abilities.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,9): error C2146: syntax error: missing ';' before identifier 'Player'
+  (compiling source file 'Abilities.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,18): error C2059: syntax error: 'public'
+  (compiling source file 'Abilities.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2143: syntax error: missing ';' before '{'
+  (compiling source file 'Abilities.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2447: '{': missing function header (old-style formal list?)
+  (compiling source file 'Abilities.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Abilities.cpp(10,12): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Abilities.cpp(10,32): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Abilities.cpp(24,19): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Abilities.cpp(25,17): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Abilities.cpp(29,14): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Abilities.cpp(38,7): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Abilities.cpp(39,12): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Abilities.cpp(40,5): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Abilities.cpp(43,12): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Abilities.cpp(43,32): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Abilities.cpp(57,3): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Abilities.cpp(64,3): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Abilities.cpp(65,3): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Abilities.cpp(75,14): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Abilities.cpp(78,5): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Abilities.cpp(79,5): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Abilities.cpp(87,14): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Abilities.cpp(90,12): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Abilities.cpp(90,32): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Abilities.cpp(104,3): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+  Ability.cpp
+  Chest.cpp
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'Chest.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,9): error C2146: syntax error: missing ';' before identifier 'Player'
+  (compiling source file 'Chest.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,18): error C2059: syntax error: 'public'
+  (compiling source file 'Chest.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2143: syntax error: missing ';' before '{'
+  (compiling source file 'Chest.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2447: '{': missing function header (old-style formal list?)
+  (compiling source file 'Chest.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Chest.cpp(16,3): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Chest.cpp(25,3): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+  Consumable.cpp
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'Consumable.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,9): error C2146: syntax error: missing ';' before identifier 'Player'
+  (compiling source file 'Consumable.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,18): error C2059: syntax error: 'public'
+  (compiling source file 'Consumable.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2143: syntax error: missing ';' before '{'
+  (compiling source file 'Consumable.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2447: '{': missing function header (old-style formal list?)
+  (compiling source file 'Consumable.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Consumable.cpp(14,7): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Consumable.cpp(17,7): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Consumable.cpp(20,7): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+  Destructible.cpp
+  Enemy.cpp
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'Enemy.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,9): error C2146: syntax error: missing ';' before identifier 'Player'
+  (compiling source file 'Enemy.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,18): error C2059: syntax error: 'public'
+  (compiling source file 'Enemy.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2143: syntax error: missing ';' before '{'
+  (compiling source file 'Enemy.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2447: '{': missing function header (old-style formal list?)
+  (compiling source file 'Enemy.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Enemy.cpp(41,28): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Enemy.cpp(41,43): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Enemy.cpp(41,14): error C2660: 'Enemy::GetDistanceTo': function does not take 1 arguments
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Enemy.h(38,7):
+      see declaration of 'Enemy::GetDistanceTo'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Enemy.cpp(41,14):
+      while trying to match the argument list '()'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Enemy.cpp(58,7): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Enemy.cpp(60,12): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Enemy.cpp(62,7): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Enemy.cpp(64,12): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Enemy.cpp(71,3): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Enemy.cpp(72,3): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+  GameDatabase.cpp
+  GameState.cpp
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'GameState.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,9): error C2146: syntax error: missing ';' before identifier 'Player'
+  (compiling source file 'GameState.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,18): error C2059: syntax error: 'public'
+  (compiling source file 'GameState.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2143: syntax error: missing ';' before '{'
+  (compiling source file 'GameState.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2447: '{': missing function header (old-style formal list?)
+  (compiling source file 'GameState.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\GameState.h(27,10): error C2079: 'GameState::player_' uses undefined class 'Player'
+  (compiling source file 'GameState.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\GameState.cpp(4,14): error C2440: 'initializing': cannot convert from 'initializer list' to 'int'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\GameState.cpp(4,14):
+      The initializer contains too many elements
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\GameState.cpp(7,37): error C2439: 'GameState::player_': member could not be initialized
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\GameState.h(27,10):
+      see declaration of 'GameState::player_'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\GameState.cpp(19,15): error C2664: 'void TurnSystem::ProcessTurn(Action,Player &,Room &)': cannot convert argument 2 from 'int' to 'Player &'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\TurnSystem.h(30,8):
+      see declaration of 'TurnSystem::ProcessTurn'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\GameState.cpp(19,15):
+      while trying to match the argument list '(Action, int, _Ty)'
+          with
+          [
+              _Ty=Room
+          ]
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\GameState.cpp(38,41): error C2440: 'return': cannot convert from 'int' to 'Player &'
+  Inventory.cpp
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'Inventory.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,9): error C2146: syntax error: missing ';' before identifier 'Player'
+  (compiling source file 'Inventory.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,18): error C2059: syntax error: 'public'
+  (compiling source file 'Inventory.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2143: syntax error: missing ';' before '{'
+  (compiling source file 'Inventory.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2447: '{': missing function header (old-style formal list?)
+  (compiling source file 'Inventory.cpp')
+  
+  Item.cpp
+  main.cpp
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'main.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,9): error C2146: syntax error: missing ';' before identifier 'Player'
+  (compiling source file 'main.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,18): error C2059: syntax error: 'public'
+  (compiling source file 'main.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2143: syntax error: missing ';' before '{'
+  (compiling source file 'main.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2447: '{': missing function header (old-style formal list?)
+  (compiling source file 'main.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\GameState.h(27,10): error C2079: 'GameState::player_' uses undefined class 'Player'
+  (compiling source file 'main.cpp')
+  
+  Player.cpp
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'Player.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,9): error C2146: syntax error: missing ';' before identifier 'Player'
+  (compiling source file 'Player.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,18): error C2059: syntax error: 'public'
+  (compiling source file 'Player.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2143: syntax error: missing ';' before '{'
+  (compiling source file 'Player.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2447: '{': missing function header (old-style formal list?)
+  (compiling source file 'Player.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(5,9): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(6,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(13,1): error C2550: '{ctor}': constructor initializer lists are only allowed on constructor definitions
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(15,5): error C3861: 'UnlockAbility': identifier not found
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(17,1): warning C4508: '{ctor}': function should return a value; 'void' return type assumed
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(21,14): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(22,7): error C2065: 'level_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(23,3): error C2065: 'level_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(24,3): error C3861: 'UpdateStatsForLevel': identifier not found
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(26,11): error C2065: 'level_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(26,19): error C2050: switch expression not integral
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(28,7): error C3861: 'UnlockAbility': identifier not found
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(31,7): error C3861: 'UnlockAbility': identifier not found
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(32,7): error C3861: 'UnlockAbility': identifier not found
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(35,7): error C3861: 'UnlockAbility': identifier not found
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(41,14): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(42,3): error C2065: 'abilities_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(45,14): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(46,34): error C2065: 'abilities_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(47,8): error C2065: 'abilities_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(48,3): error C2065: 'abilities_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(48,32): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(52,14): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(53,18): error C2065: 'abilities_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(53,3): error C2530: 'a': references must be initialized
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(53,3): error C3531: 'a': a symbol whose type contains 'auto' must have an initializer
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(53,16): error C2143: syntax error: missing ';' before ':'
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(53,28): error C2143: syntax error: missing ';' before ')'
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(56,54): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(56,54): error C2270: 'GetAbilities': modifiers not allowed on nonmember functions
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(57,10): error C2065: 'abilities_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(60,14): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(60,14): error C2270: 'HasEmissionBuff': modifiers not allowed on nonmember functions
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(60,47): error C2065: 'emission_buff_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(63,14): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(63,42): error C2065: 'emission_buff_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(66,14): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(66,36): error C2065: 'emission_buff_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(68,13): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(68,13): error C2270: 'GetAttackDamageBonus': modifiers not allowed on nonmember functions
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(68,51): error C2065: 'attack_damage_bonus_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(71,13): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(71,13): error C2270: 'GetAttackRangeBonus': modifiers not allowed on nonmember functions
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(71,50): error C2065: 'attack_range_bonus_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(74,14): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(74,46): error C2065: 'attack_damage_bonus_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(77,14): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(77,45): error C2065: 'attack_range_bonus_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(82,14): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(83,11): error C2352: 'Entity::TakeDamage': a call of a non-static member function requires an object
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Entity.h(8,16):
+      see declaration of 'Entity::TakeDamage'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(84,7): error C2065: 'health_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(84,21): error C2065: 'health_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(87,14): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(88,3): error C2065: 'x_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(89,3): error C2065: 'y_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(93,14): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(94,3): error C2065: 'core_heat_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(95,7): error C2065: 'core_heat_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(95,20): error C2065: 'max_core_heat_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(95,36): error C2065: 'core_heat_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(95,49): error C2065: 'max_core_heat_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(96,21): error C2059: syntax error: ')'
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(97,1): error C2143: syntax error: missing ';' before '}'
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(99,14): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(99,34): error C2143: syntax error: missing ';' before '{'
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(100,8): error C2947: expecting '>' to terminate template-argument-list, found '+='
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(100,17): error C2059: syntax error: ';'
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(101,7): error C2065: 'level_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(101,22): error C2065: 'exp_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(103,12): error C2065: 'level_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(103,27): error C2065: 'exp_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(105,12): error C2065: 'level_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(105,27): error C2065: 'exp_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(109,14): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(109,14): error C2084: function 'void LevelUp(void)' already has a body
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(21,14):
+      see previous definition of 'LevelUp'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(110,7): error C2065: 'level_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(111,3): error C2065: 'level_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(112,3): error C3861: 'UpdateStatsForLevel': identifier not found
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(114,7): error C2065: 'level_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(118,14): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(119,11): error C2065: 'level_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(119,19): error C2050: switch expression not integral
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(121,7): error C2065: 'max_health_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(122,7): error C2065: 'max_core_heat_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(125,7): error C2065: 'max_health_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(126,7): error C2065: 'max_core_heat_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(129,7): error C2065: 'max_health_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(130,7): error C2065: 'max_core_heat_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(135,3): error C2065: 'health_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(135,13): error C2065: 'max_health_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(138,14): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(138,42): error C2065: 'inventory_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(138,69): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(140,13): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(140,13): error C2270: 'GetCoreHeat': modifiers not allowed on nonmember functions
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(140,42): error C2065: 'core_heat_': undeclared identifier
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(141,13): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(141,13): error C2270: 'GetMaxCoreHeat': modifiers not allowed on nonmember functions
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(141,13): error C1003: error count exceeds 100; stopping compilation
   Renderer.cpp
-C:\Users\JustGeo\source\repos\LivingHell\LivingHell\Renderer.cpp(5,21): warning C4834: discarding return value of function with [[nodiscard]] attribute
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'Renderer.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,9): error C2146: syntax error: missing ';' before identifier 'Player'
+  (compiling source file 'Renderer.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,18): error C2059: syntax error: 'public'
+  (compiling source file 'Renderer.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2143: syntax error: missing ';' before '{'
+  (compiling source file 'Renderer.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2447: '{': missing function header (old-style formal list?)
+  (compiling source file 'Renderer.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\GameState.h(27,10): error C2079: 'GameState::player_' uses undefined class 'Player'
+  (compiling source file 'Renderer.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Renderer.cpp(5,21): warning C4834: discarding return value of function with [[nodiscard]] attribute
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Renderer.cpp(44,26): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Renderer.cpp(44,54): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Renderer.cpp(44,12): error C2660: 'Renderer::MakeText': function does not take 3 arguments
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Renderer.h(23,12):
+      see declaration of 'Renderer::MakeText'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Renderer.cpp(44,12):
+      while trying to match the argument list '(const char [2], const sf::Color, int)'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Renderer.cpp(65,28): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Renderer.cpp(66,16): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Renderer.cpp(66,14): error C2530: 'ab': references must be initialized
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Renderer.cpp(67,19): error C3536: 'ab': cannot be used before it is initialized
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Renderer.cpp(74,51): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Renderer.cpp(75,44): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Renderer.cpp(77,51): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Renderer.cpp(78,44): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Renderer.cpp(80,51): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Renderer.cpp(82,51): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+  Room.cpp
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'Room.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,9): error C2146: syntax error: missing ';' before identifier 'Player'
+  (compiling source file 'Room.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,18): error C2059: syntax error: 'public'
+  (compiling source file 'Room.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2143: syntax error: missing ';' before '{'
+  (compiling source file 'Room.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2447: '{': missing function header (old-style formal list?)
+  (compiling source file 'Room.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.cpp(46,7): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Inventory.h(8,7):
+      see declaration of 'Player'
+  
+  HeatPurge.cpp
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'HeatPurge.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,9): error C2146: syntax error: missing ';' before identifier 'Player'
+  (compiling source file 'HeatPurge.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,18): error C2059: syntax error: 'public'
+  (compiling source file 'HeatPurge.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2143: syntax error: missing ';' before '{'
+  (compiling source file 'HeatPurge.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2447: '{': missing function header (old-style formal list?)
+  (compiling source file 'HeatPurge.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\HeatPurge.cpp(8,3): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\HeatPurge.cpp(8,23): error C2027: use of undefined type 'Player'
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+  TurnSystem.cpp
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,9): error C2146: syntax error: missing ';' before identifier 'Player'
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,18): error C2059: syntax error: 'public'
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2143: syntax error: missing ';' before '{'
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2447: '{': missing function header (old-style formal list?)
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(5,9): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(6,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(13,1): error C2550: '{ctor}': constructor initializer lists are only allowed on constructor definitions
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(15,5): error C3861: 'UnlockAbility': identifier not found
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(17,1): warning C4508: '{ctor}': function should return a value; 'void' return type assumed
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(21,14): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(22,7): error C2065: 'level_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(23,3): error C2065: 'level_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(24,3): error C3861: 'UpdateStatsForLevel': identifier not found
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(26,11): error C2065: 'level_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(26,19): error C2050: switch expression not integral
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(28,7): error C3861: 'UnlockAbility': identifier not found
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(31,7): error C3861: 'UnlockAbility': identifier not found
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(32,7): error C3861: 'UnlockAbility': identifier not found
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(35,7): error C3861: 'UnlockAbility': identifier not found
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(41,14): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(42,3): error C2065: 'abilities_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(45,14): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(46,34): error C2065: 'abilities_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(47,8): error C2065: 'abilities_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(48,3): error C2065: 'abilities_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(48,32): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(52,14): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(53,18): error C2065: 'abilities_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(53,3): error C2530: 'a': references must be initialized
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(53,3): error C3531: 'a': a symbol whose type contains 'auto' must have an initializer
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(53,16): error C2143: syntax error: missing ';' before ':'
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(53,28): error C2143: syntax error: missing ';' before ')'
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(56,54): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(56,54): error C2270: 'GetAbilities': modifiers not allowed on nonmember functions
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(57,10): error C2065: 'abilities_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(60,14): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(60,14): error C2270: 'HasEmissionBuff': modifiers not allowed on nonmember functions
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(60,47): error C2065: 'emission_buff_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(63,14): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(63,42): error C2065: 'emission_buff_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(66,14): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(66,36): error C2065: 'emission_buff_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(68,13): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(68,13): error C2270: 'GetAttackDamageBonus': modifiers not allowed on nonmember functions
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(68,51): error C2065: 'attack_damage_bonus_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(71,13): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(71,13): error C2270: 'GetAttackRangeBonus': modifiers not allowed on nonmember functions
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(71,50): error C2065: 'attack_range_bonus_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(74,14): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(74,46): error C2065: 'attack_damage_bonus_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(77,14): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(77,45): error C2065: 'attack_range_bonus_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(82,14): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(83,11): error C2352: 'Entity::TakeDamage': a call of a non-static member function requires an object
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Entity.h(8,16):
+      see declaration of 'Entity::TakeDamage'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(84,7): error C2065: 'health_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(84,21): error C2065: 'health_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(87,14): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(88,3): error C2065: 'x_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(89,3): error C2065: 'y_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(93,14): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(94,3): error C2065: 'core_heat_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(95,7): error C2065: 'core_heat_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(95,20): error C2065: 'max_core_heat_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(95,36): error C2065: 'core_heat_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(95,49): error C2065: 'max_core_heat_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(96,21): error C2059: syntax error: ')'
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(97,1): error C2143: syntax error: missing ';' before '}'
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(99,14): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(99,34): error C2143: syntax error: missing ';' before '{'
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(100,8): error C2947: expecting '>' to terminate template-argument-list, found '+='
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(100,17): error C2059: syntax error: ';'
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(101,7): error C2065: 'level_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(101,22): error C2065: 'exp_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(103,12): error C2065: 'level_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(103,27): error C2065: 'exp_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(105,12): error C2065: 'level_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(105,27): error C2065: 'exp_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(109,14): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(109,14): error C2084: function 'void LevelUp(void)' already has a body
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(21,14):
+      see previous definition of 'LevelUp'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(110,7): error C2065: 'level_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(111,3): error C2065: 'level_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(112,3): error C3861: 'UpdateStatsForLevel': identifier not found
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(114,7): error C2065: 'level_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(118,14): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(119,11): error C2065: 'level_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(119,19): error C2050: switch expression not integral
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(121,7): error C2065: 'max_health_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(122,7): error C2065: 'max_core_heat_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(125,7): error C2065: 'max_health_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(126,7): error C2065: 'max_core_heat_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(129,7): error C2065: 'max_health_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(130,7): error C2065: 'max_core_heat_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(135,3): error C2065: 'health_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(135,13): error C2065: 'max_health_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(138,14): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(138,42): error C2065: 'inventory_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(138,69): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(140,13): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(140,13): error C2270: 'GetCoreHeat': modifiers not allowed on nonmember functions
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(140,42): error C2065: 'core_heat_': undeclared identifier
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(141,13): error C2027: use of undefined type 'Player'
+  (compiling source file 'TurnSystem.cpp')
+      C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Room.h(13,7):
+      see declaration of 'Player'
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(141,13): error C2270: 'GetMaxCoreHeat': modifiers not allowed on nonmember functions
+  (compiling source file 'TurnSystem.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.cpp(141,13): error C1003: error count exceeds 100; stopping compilation
+  (compiling source file 'TurnSystem.cpp')
+  
+  Weapon.cpp
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'Weapon.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,9): error C2146: syntax error: missing ';' before identifier 'Player'
+  (compiling source file 'Weapon.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,18): error C2059: syntax error: 'public'
+  (compiling source file 'Weapon.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2143: syntax error: missing ';' before '{'
+  (compiling source file 'Weapon.cpp')
+  
+C:\Users\Cauua\Documents\GitHub\LivingHell-CppGame-\LivingHell\Player.h(12,32): error C2447: '{': missing function header (old-style formal list?)
+  (compiling source file 'Weapon.cpp')
+  
   Generating Code...
-  LivingHell.vcxproj -> C:\Users\JustGeo\source\repos\LivingHell\x64\Debug\LivingHell.exe

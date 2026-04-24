@@ -60,6 +60,15 @@ void Renderer::DrawEnemies(Room& room) {
 void Renderer::DrawUI(GameState& game) {
   Player& p = game.GetPlayer();
   float ui_x = 620.f;
+  float abl = 140.f;
+
+  for (int i = 0; i < (int)p.GetAbilities().size(); i++) {
+    auto& ab = p.GetAbilities()[i];
+    sf::Color c = ab->IsReady() ? sf::Color::Cyan : sf::Color(100, 100, 100);
+    std::string label = "[Q] " + ab->GetName() + (ab->IsReady() ? "" : " (cd)");
+    window_.draw(MakeText(label, ui_x, abl, c, 13));
+    abl += 18.f;
+  }
 
   window_.draw(MakeText("LIVING HELL", ui_x, 10.f, sf::Color::White, 16));
   window_.draw(MakeText("HP:   " + std::to_string(p.GetHealth()) + "/" +
