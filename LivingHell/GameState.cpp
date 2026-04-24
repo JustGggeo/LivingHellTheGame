@@ -1,11 +1,15 @@
 #include "GameState.h"
 
+#include <cstdlib>
+
 GameState::GameState()
     : player_(1, 1),
       turn_system_(100),
       current_circle_(1),
       status_(GameStatus::kPlaying) {
+  Init("enemies.csv", "items.csv");
   current_room_ = std::make_unique<Room>(30, 30, RoomType::kCombat);
+  SpawnEnemies();
 }
 
 void GameState::Init(const std::string& enemies_path,
@@ -41,4 +45,15 @@ GameStatus GameState::GetStatus() const { return status_; }
 int GameState::GetCurrentCircle() const { return current_circle_; }
 int GameState::GetCurrentTimer() const {
   return turn_system_.GetCurrentTimer();
+}
+
+void GameState::SpawnEnemies() {
+  for (const auto& data : database_.GetAllEnemies()) {
+    if (std::stoi(data.circle) != current_circle_) continue;
+    auto enemy =
+        std::make_unique<Enemy>(5 + rand() % 20, 5 + rand() % 20, data.health,
+                                data.damage, data.attack_range, data.move_speed,
+                                data.heat_damage, data.exp_reward, data.id);
+    current_room_->AddEnemy(std::move(enemy));
+  }
 }

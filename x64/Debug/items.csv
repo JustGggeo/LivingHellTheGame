@@ -1,0 +1,3 @@
+id,name,type,slots_required,effect_value,effect_type
+khladagent,Хладагент,Consumable,1,4,Cool
+kriogent,Криогент,Consumable,1,8,Cool

@@ -67,11 +67,22 @@ void TurnSystem::ProcessPlayerAction(Action action, Player& player,
 
   int new_x = player.GetX() + dx;
   int new_y = player.GetY() + dy;
-  if (new_x >= 0 && new_x < room.GetWidth() && new_y >= 0 &&
-      new_y < room.GetHeight() && room.GetTile(new_x, new_y).IsWalkable()) {
+  bool tile_ok = new_x >= 0 && new_x < room.GetWidth() && new_y >= 0 &&
+                 new_y < room.GetHeight() &&
+                 room.GetTile(new_x, new_y).IsWalkable();
+
+  bool enemy_on_tile = false;
+  for (const auto& enemy : room.GetEnemies()) {
+    if (enemy->IsAlive() && enemy->GetX() == new_x && enemy->GetY() == new_y) {
+      enemy_on_tile = true;
+      break;
+    }
+  }
+
+  if (tile_ok && !enemy_on_tile) {
     player.Move(dx, dy);
   } else {
-    player.AddCoreHeat(1);  // штраф за неудачный ход
+    player.AddCoreHeat(1);
   }
 }
 

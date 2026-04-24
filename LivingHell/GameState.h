@@ -33,4 +33,5 @@ class GameState {
 
   void CheckStatus();
   void LoadNextRoom();
+  void SpawnEnemies();
 };
