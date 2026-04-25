@@ -9,8 +9,9 @@ Renderer::Renderer(sf::RenderWindow& window, const std::string& font_path)
 
 void Renderer::Draw(GameState& game) {
   DrawRoom(game.GetCurrentRoom());
-  DrawChests(game.GetCurrentRoom());      // добавить
-  DrawFloorItems(game.GetCurrentRoom());  // добавить
+  DrawChests(game.GetCurrentRoom());
+  DrawFloorItems(game.GetCurrentRoom());
+  DrawDestructibles(game.GetCurrentRoom());
   DrawPlayer(game.GetPlayer());
   DrawEnemies(game.GetCurrentRoom());
   DrawUI(game);
@@ -131,6 +132,16 @@ void Renderer::DrawFloorItems(Room& room) {
   for (const auto& entry : room.GetFloorItems()) {
     auto t = MakeText("i", entry.x * tile_size_, entry.y * tile_size_,
                       sf::Color(50, 200, 255), 16);
+    window_.draw(t);
+  }
+}
+
+void Renderer::DrawDestructibles(Room& room) {
+  for (auto& d : room.GetDestructibles()) {
+    if (!d->IsAlive()) continue;
+    if (dynamic_cast<DroppableChest*>(d.get())) continue;
+    auto t = MakeText("*", d->GetX() * tile_size_, d->GetY() * tile_size_,
+                      sf::Color(150, 100, 255), 16);
     window_.draw(t);
   }
 }
