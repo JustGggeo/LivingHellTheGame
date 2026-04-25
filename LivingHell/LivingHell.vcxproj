@@ -42,7 +42,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v145</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -133,6 +133,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Abilities.cpp" />
+    <ClCompile Include="Ability.cpp" />
     <ClCompile Include="Chest.cpp" />
     <ClCompile Include="Consumable.cpp" />
     <ClCompile Include="Destructible.cpp" />
@@ -147,11 +149,14 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Room.cpp" />
+    <ClCompile Include="HeatPurge.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TurnSystem.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Abilities.h" />
+    <ClInclude Include="Ability.h" />
     <ClInclude Include="Chest.h" />
     <ClInclude Include="Consumable.h" />
     <ClInclude Include="Destructible.h" />
@@ -159,6 +164,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GameDatabase.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="HeatPurge.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="LevelGenerator.h" />

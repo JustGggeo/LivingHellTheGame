@@ -15,7 +15,12 @@ enum class Action {
   kAttack,
   kUseAbility,
   kUseItem,
-  kWait
+  kWait,
+  kUseAbility1,
+  kUseAbility2,
+  kUseAbility3,
+  kUseAbility4,
+  kUseAbility5
 };
 
 class TurnSystem {

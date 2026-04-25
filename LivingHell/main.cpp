@@ -41,6 +41,23 @@ int main() {
           case sf::Keyboard::Key::E:
             action = Action::kUseItem;
             break;
+          case sf::Keyboard::Key::Num1:
+            action = Action::kUseAbility1;
+            break;
+          case sf::Keyboard::Key::Num2:
+            action = Action::kUseAbility2;
+            break;
+          case sf::Keyboard::Key::Num3:
+            action = Action::kUseAbility3;
+            break;
+          case sf::Keyboard::Key::Num4:
+            action = Action::kUseAbility4;
+            break;
+          case sf::Keyboard::Key::Num5:
+            action = Action::kUseAbility5;
+            break;
+
+
           default:
             break;
         }
