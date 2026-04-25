@@ -1,5 +1,6 @@
 #include "TurnSystem.h"
-#include "Player.cpp"
+
+#include "Player.h"
 
 TurnSystem::TurnSystem(int timer_limit)
     : turn_count_(0),
@@ -23,7 +24,6 @@ void TurnSystem::ProcessTurn(Action action, Player& player, Room& room) {
   player.TickAbilities();
 
   if (!player.IsAlive() || current_timer_ <= 0) game_over_ = true;
-
 }
 
 void TurnSystem::ProcessPlayerAction(Action action, Player& player,
@@ -80,8 +80,6 @@ void TurnSystem::ProcessPlayerAction(Action action, Player& player,
     case Action::kUseAbility5:
       player.UseAbility(4, room);
       return;
-
-
 
     default:
       return;

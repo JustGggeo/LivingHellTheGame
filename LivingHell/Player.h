@@ -1,15 +1,13 @@
 #pragma once
 
-#include <vector>
-#include "Ability.h"
-#include <vector>
 #include <memory>
+#include <vector>
 
-
+#include "Ability.h"
 #include "Entity.h"
 #include "Inventory.h"
 
-¸class Player : public Entity {
+class Player : public Entity {
  public:
   Player(int x, int y);
 
@@ -55,8 +53,4 @@
   int attack_range_;
   Inventory inventory_;
   std::vector<std::unique_ptr<Ability>> abilities_;
-
-
-
-
 };
