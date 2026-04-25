@@ -1,4 +1,5 @@
 #include "Renderer.h"
+#include "DroppableChest.h"
 
 Renderer::Renderer(sf::RenderWindow& window, const std::string& font_path)
     : window_(window), tile_size_(20.f) {
@@ -7,9 +8,12 @@ Renderer::Renderer(sf::RenderWindow& window, const std::string& font_path)
 
 void Renderer::Draw(GameState& game) {
   DrawRoom(game.GetCurrentRoom());
+  DrawChests(game.GetCurrentRoom());      // добавить
+  DrawFloorItems(game.GetCurrentRoom());  // добавить
   DrawPlayer(game.GetPlayer());
   DrawEnemies(game.GetCurrentRoom());
   DrawUI(game);
+
 }
 
 void Renderer::DrawRoom(Room& room) {
@@ -65,7 +69,8 @@ void Renderer::DrawUI(GameState& game) {
   for (int i = 0; i < (int)p.GetAbilities().size(); i++) {
     auto& ab = p.GetAbilities()[i];
     sf::Color c = ab->IsReady() ? sf::Color::Cyan : sf::Color(100, 100, 100);
-    std::string label = "[Q] " + ab->GetName() + (ab->IsReady() ? "" : " (cd)");
+
+    std::string label = "[" + std::to_string(i + 1) + "] " + ab->GetName() + (ab->IsReady() ? "" : " (cd)");
     window_.draw(MakeText(label, ui_x, abl, c, 13));
     abl += 18.f;
   }
@@ -96,4 +101,24 @@ sf::Text Renderer::MakeText(const std::string& str, float x, float y,
   text.setPosition({x, y});
   text.setFillColor(color);
   return text;
+}
+
+void Renderer::DrawChests(Room& room) {
+  for (auto& obj : room.GetDestructibles()) {
+    auto* chest = dynamic_cast<DroppableChest*>(obj.get());
+    if (chest && chest->IsAlive()) {
+      auto t =
+          MakeText("C", chest->GetX() * tile_size_, chest->GetY() * tile_size_,
+                   sf::Color(200, 150, 50), 16);
+      window_.draw(t);
+    }
+  }
+}
+
+void Renderer::DrawFloorItems(Room& room) {
+  for (const auto& entry : room.GetFloorItems()) {
+    auto t = MakeText("i", entry.x * tile_size_, entry.y * tile_size_,
+                      sf::Color(50, 200, 255), 16);
+    window_.draw(t);
+  }
 }

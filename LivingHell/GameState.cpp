@@ -3,6 +3,9 @@
 #include <cstdlib>
 #include <ctime>
 
+#include "DroppableChest.h"
+#include "Consumable.h"
+
 GameState::GameState()
     : player_(1, 1),
       turn_system_(100),
@@ -63,7 +66,7 @@ int GameState::GetCurrentTimer() const {
 
 void GameState::SpawnEnemies() {
   for (const auto& data : database_.GetAllEnemies()) {
-    if (std::stoi(data.circle) != current_circle_) continue;
+    if (data.circle != current_circle_) continue;
 
     int x = 0, y = 0;
     bool found = false;
@@ -96,6 +99,7 @@ void GameState::ApplyGeneratedRooms() {
                                                      : TileType::kFloor);
       }
     }
+
   }
 
   const RoomPlacement* start = level_generator_.GetStartRoom();
@@ -131,5 +135,19 @@ void GameState::ApplyGeneratedRooms() {
           current_room_->GetTile(x, y).SetType(TileType::kExit);
           placed = true;
         }
+  }
+  // Спавним сундук в случайной проходимой клетке
+  bool chest_placed = false;
+  for (int attempt = 0; attempt < 100 && !chest_placed; attempt++) {
+    int x = 2 + rand() % 26;
+    int y = 2 + rand() % 26;
+    if (current_room_->GetTile(x, y).IsWalkable()) {
+      auto chest = std::make_unique<DroppableChest>(
+          x, y,
+          std::make_unique<Consumable>("khladagent", "Хладагент",
+                                       EffectType::kCool, 4));
+      current_room_->AddDestructible(std::move(chest));
+      chest_placed = true;
+    }
   }
 }

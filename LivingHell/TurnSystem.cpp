@@ -2,6 +2,8 @@
 
 #include "Player.h"
 
+#include "DroppableChest.h"
+
 TurnSystem::TurnSystem(int timer_limit)
     : turn_count_(0),
       timer_limit_(timer_limit),
@@ -18,6 +20,14 @@ void TurnSystem::ProcessTurn(Action action, Player& player, Room& room) {
 
   ResolveEnemies(player, room);
   room.RemoveDeadEnemies(player);
+
+    // Дроп предметов из уничтоженных сундуков
+  for (auto& obj : room.GetDestructibles()) {
+    auto* chest = dynamic_cast<DroppableChest*>(obj.get());
+    if (chest && !chest->IsAlive() && chest->HasItem()) {
+      room.AddDroppedItem(chest->GetX(), chest->GetY(), chest->TakeItem());
+    }
+  }
 
   current_timer_--;
   turn_count_++;
@@ -105,9 +115,16 @@ void TurnSystem::ProcessPlayerAction(Action action, Player& player,
     if (room.GetTile(new_x, new_y).GetType() == TileType::kExit) {
       reached_exit_ = true;
     }
+    if (room.HasItemAt(new_x, new_y)) {
+      auto item = room.PickUpItemAt(new_x, new_y);
+      if (item) player.GetInventory().AddItem(std::move(item));
+    }
+
   } else {
     player.AddCoreHeat(1);
   }
+
+
 }
 
 void TurnSystem::ResolveEnemies(Player& player, Room& room) {

@@ -26,22 +26,34 @@ int main() {
 
         Action action = Action::kWait;
         switch (key->code) {
-          case sf::Keyboard::Key::Up:
+          case sf::Keyboard::Key::W:
             action = Action::kMoveUp;
             break;
-          case sf::Keyboard::Key::Down:
+          case sf::Keyboard::Key::S:
             action = Action::kMoveDown;
             break;
-          case sf::Keyboard::Key::Left:
+          case sf::Keyboard::Key::A:
             action = Action::kMoveLeft;
             break;
-          case sf::Keyboard::Key::Right:
+          case sf::Keyboard::Key::D:
             action = Action::kMoveRight;
             break;
+          case sf::Keyboard::Key::Q:
+            action = Action::kMoveUpLeft;
+            break;
           case sf::Keyboard::Key::E:
+            action = Action::kMoveUpRight;
+            break;
+          case sf::Keyboard::Key::Z:
+            action = Action::kMoveDownLeft;
+            break;
+          case sf::Keyboard::Key::C:
+            action = Action::kMoveDownRight;
+            break;
+          case sf::Keyboard::Key::X:
             action = Action::kUseItem;
             break;
-          case sf::Keyboard::Key::Q:
+          case sf::Keyboard::Key::Num1:
             action = Action::kUseAbility1;
             break;
           case sf::Keyboard::Key::Num2:

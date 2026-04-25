@@ -11,6 +11,9 @@ class Renderer {
   void Draw(GameState& game);
 
  private:
+  void DrawChests(Room& room);
+  void DrawFloorItems(Room& room);
+
   sf::RenderWindow& window_;
   sf::Font font_;
   float tile_size_;

@@ -34,7 +34,6 @@ void BasicAttack::Activate(Player& player, Room& room) {
   int range = GetRange(player);
   int dmg = GetDamage(player);
 
-  // если бафф Эмиссии активен — добавляем урон
   if (player.HasEmissionBuff()) {
     dmg += player.GetCoreHeat();
     player.ClearEmissionBuff();
@@ -47,8 +46,14 @@ void BasicAttack::Activate(Player& player, Room& room) {
     if (dx <= range && dy <= range && e->IsAlive()) e->TakeDamage(dmg);
   }
 
-  if (current_cooldown_ == 0)  // кулдаун 0, но сбрасываем если нужно
-    current_cooldown_ = cooldown_;
+  // Добавить — атака по разрушаемым объектам
+  for (auto& obj : room.GetDestructibles()) {
+    int dx = std::abs(obj->GetX() - px);
+    int dy = std::abs(obj->GetY() - py);
+    if (dx <= range && dy <= range && obj->IsAlive()) obj->TakeDamage(dmg);
+  }
+
+  if (current_cooldown_ == 0) current_cooldown_ = cooldown_;
 }
 
 // ── 2. Эмиссия ───────────────────────────────────────────
