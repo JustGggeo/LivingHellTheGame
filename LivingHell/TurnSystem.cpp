@@ -99,12 +99,18 @@ void TurnSystem::ProcessPlayerAction(Action action, Player& player,
     }
   }
 
-  if (tile_ok && !enemy_on_tile) {
-    player.Move(dx, dy);
-    // --- добавить проверку выхода ---
-    if (room.GetTile(new_x, new_y).GetType() == TileType::kExit) {
-      reached_exit_ = true;
+  bool destructible_on_tile = false;
+  for (const auto& d : room.GetDestructibles()) {
+    if (d->IsAlive() && d->GetX() == new_x && d->GetY() == new_y) {
+      destructible_on_tile = true;
+      break;
     }
+  }
+
+  if (tile_ok && !enemy_on_tile && !destructible_on_tile) {
+    player.Move(dx, dy);
+    if (room.GetTile(new_x, new_y).GetType() == TileType::kExit)
+      reached_exit_ = true;
   } else {
     player.AddCoreHeat(1);
   }

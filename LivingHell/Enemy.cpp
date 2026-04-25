@@ -22,7 +22,7 @@ void Enemy::TakeDamage(int dmg) {
 
 void Enemy::Act(Player& player, Room& room) {
   if (state_ == EnemyState::kDead) return;
-  UpdateState(player);
+  UpdateState(player, room);
   switch (state_) {
     case EnemyState::kPatrolling:
       Patrol();
@@ -54,6 +54,7 @@ void Enemy::Patrol() {
 }
 
 void Enemy::ChasePlayer(Player& player, Room& room) {
+  int dist = GetDistanceTo(player.GetX(), player.GetY());
   int dx = 0, dy = 0;
   if (player.GetX() > x_)
     dx = 1;
@@ -64,10 +65,37 @@ void Enemy::ChasePlayer(Player& player, Room& room) {
   else if (player.GetY() < y_)
     dy = -1;
 
+  // Если attack_range > 1 — держим дистанцию, отступаем если слишком близко
+  if (attack_range_ > 1) {
+    if (dist <= 1) {
+      // Отступаем от игрока
+      dx = -dx;
+      dy = -dy;
+    } else if (dist <= attack_range_) {
+      // Уже в зоне атаки — не двигаемся
+      return;
+    }
+    // Иначе приближаемся до attack_range
+  }
+
   int new_x = x_ + dx;
   int new_y = y_ + dy;
-  if (new_x >= 0 && new_x < room.GetWidth() && new_y >= 0 &&
-      new_y < room.GetHeight() && room.GetTile(new_x, new_y).IsWalkable()) {
+
+  // Проверка стен
+  bool tile_ok = new_x >= 0 && new_x < room.GetWidth() && new_y >= 0 &&
+                 new_y < room.GetHeight() &&
+                 room.GetTile(new_x, new_y).IsWalkable();
+
+  // --- добавить: проверка destructibles ---
+  bool blocked_by_destructible = false;
+  for (const auto& d : room.GetDestructibles()) {
+    if (d->IsAlive() && d->GetX() == new_x && d->GetY() == new_y) {
+      blocked_by_destructible = true;
+      break;
+    }
+  }
+
+  if (tile_ok && !blocked_by_destructible) {
     x_ = new_x;
     y_ = new_y;
   }
@@ -84,6 +112,19 @@ int Enemy::GetDistanceTo(int target_x, int target_y) const {
   if (dx < 0) dx = -dx;
   if (dy < 0) dy = -dy;
   return dx > dy ? dx : dy;
+}
+
+bool Enemy::HasLineOfSight(int target_x, int target_y, Room& room) const {
+  int x = x_, y = y_;
+  int dx = target_x - x, dy = target_y - y;
+  int steps = std::max(std::abs(dx), std::abs(dy));
+  if (steps == 0) return true;
+  for (int i = 1; i < steps; i++) {
+    int cx = x + dx * i / steps;
+    int cy = y + dy * i / steps;
+    if (!room.GetTile(cx, cy).IsWalkable()) return false;
+  }
+  return true;
 }
 
 int Enemy::GetExpReward() const { return exp_reward_; }

@@ -17,8 +17,6 @@ static std::vector<Enemy*> GetAdjacentEnemies(Player& player, Room& room) {
   return result;
 }
 
-
-
 // ── 1. Обычный удар ──────────────────────────────────────
 int BasicAttack::GetDamage(const Player& player) const {
   int base = 1 + (player.GetLevel() - 1);  // растёт с уровнем
@@ -45,6 +43,15 @@ void BasicAttack::Activate(Player& player, Room& room) {
     int dx = std::abs(e->GetX() - px);
     int dy = std::abs(e->GetY() - py);
     if (dx <= range && dy <= range && e->IsAlive()) e->TakeDamage(dmg);
+  }
+
+  for (auto& d : room.GetDestructibles()) {
+    int dx = std::abs(d->GetX() - px);
+    int dy = std::abs(d->GetY() - py);
+    if (dx <= range && dy <= range && d->IsAlive()) {
+      d->TakeDamage(dmg);
+      if (!d->IsAlive()) player.GainExp(d->GetExpReward());
+    }
   }
 
   if (current_cooldown_ == 0)  // кулдаун 0, но сбрасываем если нужно

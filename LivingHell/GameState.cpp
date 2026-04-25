@@ -82,6 +82,21 @@ void GameState::SpawnEnemies() {
         x, y, data.health, data.damage, data.attack_range, data.move_speed,
         data.heat_damage, data.exp_reward, data.id);
     current_room_->AddEnemy(std::move(enemy));
+
+    int soul_count = 3 + rand() % 3;
+    for (int i = 0; i < soul_count; i++) {
+      bool found = false;
+      for (int attempt = 0; attempt < 100; attempt++) {
+        int x = 2 + rand() % 26;
+        int y = 2 + rand() % 26;
+        if (current_room_->GetTile(x, y).IsWalkable() &&
+            !(x == player_.GetX() && y == player_.GetY())) {
+          current_room_->AddDestructible(std::make_unique<SoulAshurn>(x, y));
+          found = true;
+          break;
+        }
+      }
+    }
   }
 }
 

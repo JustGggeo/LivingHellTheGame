@@ -48,6 +48,18 @@ void Room::RemoveDeadEnemies(Player& player) {
   }
 }
 
+void Enemy::UpdateState(Player& player, Room& room) {
+  int dist = GetDistanceTo(player.GetX(), player.GetY());
+  if (dist <= attack_range_ &&
+      HasLineOfSight(player.GetX(), player.GetY(), room)) {
+    state_ = EnemyState::kAttacking;
+  } else if (dist <= 5) {
+    state_ = EnemyState::kChasing;
+  } else {
+    state_ = EnemyState::kPatrolling;
+  }
+}
+
 std::vector<std::unique_ptr<Enemy>>& Room::GetEnemies() { return enemies_; }
 
 std::vector<std::unique_ptr<Destructible>>& Room::GetDestructibles() {

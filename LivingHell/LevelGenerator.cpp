@@ -6,7 +6,7 @@ LevelGenerator::LevelGenerator(int field_width, int field_height)
 void LevelGenerator::Generate(int circle, const GameDatabase& db) {
   placements_.clear();
   int max_attempts = 100;
-  int target_rooms = 6;
+  int target_rooms = 10;
   bool used_key = false;
 
   // Сначала гарантированно спавним start
@@ -84,7 +84,7 @@ void LevelGenerator::Generate(int circle, const GameDatabase& db) {
 
 bool LevelGenerator::Overlaps(const RoomPlacement& a,
                               const RoomPlacement& b) const {
-  int margin = 2;
+  int margin = 0;
   return !(a.x + a.width + margin <= b.x || b.x + b.width + margin <= a.x ||
            a.y + a.height + margin <= b.y || b.y + b.height + margin <= a.y);
 }
