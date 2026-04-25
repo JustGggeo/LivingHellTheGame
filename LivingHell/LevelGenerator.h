@@ -20,7 +20,6 @@ class LevelGenerator {
   LevelGenerator(int field_width, int field_height);
 
   void Generate(int circle, const GameDatabase& db);
-  void ApplyToField(std::vector<std::vector<TileType>>& field) const;
 
   const std::vector<RoomPlacement>& GetPlacements() const;
   const RoomPlacement* GetStartRoom() const;

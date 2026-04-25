@@ -38,9 +38,10 @@ void Enemy::Act(Player& player, Room& room) {
   }
 }
 
-void Enemy::UpdateState(Player& player) {
+void Enemy::UpdateState(Player& player, Room& room) {
   int dist = GetDistanceTo(player.GetX(), player.GetY());
-  if (dist <= attack_range_) {
+  if (dist <= attack_range_ &&
+      HasLineOfSight(player.GetX(), player.GetY(), room)) {
     state_ = EnemyState::kAttacking;
   } else if (dist <= 5) {
     state_ = EnemyState::kChasing;

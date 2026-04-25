@@ -1,5 +1,6 @@
 #include "Room.h"
 
+#include "Item.h"
 #include "Player.h"
 
 Room::Room(int width, int height, RoomType type)
@@ -21,8 +22,31 @@ void Room::GenerateBasicLayout() {
 
 void Room::Enter(Player& player) { is_cleared_ = false; }
 
-bool Room::IsCleared() const {
-  return enemies_.empty() && !is_cleared_ == false;
+bool Room::IsCleared() const { return enemies_.empty(); }
+
+void Room::AddDroppedItem(int x, int y, std::unique_ptr<Item> item) {
+  floor_items_.push_back({x, y, std::move(item)});
+}
+
+bool Room::HasItemAt(int x, int y) const {
+  for (const auto& entry : floor_items_)
+    if (entry.x == x && entry.y == y) return true;
+  return false;
+}
+
+std::unique_ptr<Item> Room::PickUpItemAt(int x, int y) {
+  for (auto it = floor_items_.begin(); it != floor_items_.end(); ++it) {
+    if (it->x == x && it->y == y) {
+      auto item = std::move(it->item);
+      floor_items_.erase(it);
+      return item;
+    }
+  }
+  return nullptr;
+}
+
+const std::vector<Room::FloorItem>& Room::GetFloorItems() const {
+  return floor_items_;
 }
 
 Tile& Room::GetTile(int x, int y) { return tiles_[y * width_ + x]; }
@@ -45,18 +69,6 @@ void Room::RemoveDeadEnemies(Player& player) {
     } else {
       ++it;
     }
-  }
-}
-
-void Enemy::UpdateState(Player& player, Room& room) {
-  int dist = GetDistanceTo(player.GetX(), player.GetY());
-  if (dist <= attack_range_ &&
-      HasLineOfSight(player.GetX(), player.GetY(), room)) {
-    state_ = EnemyState::kAttacking;
-  } else if (dist <= 5) {
-    state_ = EnemyState::kChasing;
-  } else {
-    state_ = EnemyState::kPatrolling;
   }
 }
 

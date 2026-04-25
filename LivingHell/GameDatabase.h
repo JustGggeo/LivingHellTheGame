@@ -16,7 +16,7 @@ struct EnemyData {
   int move_speed = 0;
   int heat_damage = 0;
   int exp_reward = 0;
-  std::string circle;
+  int circle = 0;
 };
 
 struct ItemData {

@@ -138,6 +138,7 @@
     <ClCompile Include="Chest.cpp" />
     <ClCompile Include="Consumable.cpp" />
     <ClCompile Include="Destructible.cpp" />
+    <ClCompile Include="DroppableChest.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameDatabase.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Chest.h" />
     <ClInclude Include="Consumable.h" />
     <ClInclude Include="Destructible.h" />
+    <ClInclude Include="DroppableChest.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GameDatabase.h" />
