@@ -1,4 +1,5 @@
 #include "Renderer.h"
+
 #include "DroppableChest.h"
 
 Renderer::Renderer(sf::RenderWindow& window, const std::string& font_path)
@@ -13,7 +14,6 @@ void Renderer::Draw(GameState& game) {
   DrawPlayer(game.GetPlayer());
   DrawEnemies(game.GetCurrentRoom());
   DrawUI(game);
-
 }
 
 void Renderer::DrawRoom(Room& room) {
@@ -52,9 +52,20 @@ void Renderer::DrawPlayer(Player& player) {
 
 void Renderer::DrawEnemies(Room& room) {
   for (auto& enemy : room.GetEnemies()) {
-    std::string symbol = "E";
-    sf::Color color = sf::Color(255, 80, 80);
-    if (enemy->GetEnemyId() == "infernal_demon") color = sf::Color(255, 0, 0);
+    std::string symbol;
+    sf::Color color;
+
+    if (enemy->GetEnemyId() == "chertila") {
+      symbol = "e";
+      color = sf::Color(255, 100, 100);  // светло-красный
+    } else if (enemy->GetEnemyId() == "demon") {
+      symbol = "D";
+      color = sf::Color(255, 0, 0);  // ярко-красный, большая буква
+    } else {
+      symbol = "E";
+      color = sf::Color(200, 50, 50);
+    }
+
     auto t = MakeText(symbol, enemy->GetX() * tile_size_,
                       enemy->GetY() * tile_size_, color, 16);
     window_.draw(t);
@@ -70,7 +81,8 @@ void Renderer::DrawUI(GameState& game) {
     auto& ab = p.GetAbilities()[i];
     sf::Color c = ab->IsReady() ? sf::Color::Cyan : sf::Color(100, 100, 100);
 
-    std::string label = "[" + std::to_string(i + 1) + "] " + ab->GetName() + (ab->IsReady() ? "" : " (cd)");
+    std::string label = "[" + std::to_string(i + 1) + "] " + ab->GetName() +
+                        (ab->IsReady() ? "" : " (cd)");
     window_.draw(MakeText(label, ui_x, abl, c, 13));
     abl += 18.f;
   }

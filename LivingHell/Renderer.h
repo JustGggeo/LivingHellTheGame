@@ -11,9 +11,6 @@ class Renderer {
   void Draw(GameState& game);
 
  private:
-  void DrawChests(Room& room);
-  void DrawFloorItems(Room& room);
-
   sf::RenderWindow& window_;
   sf::Font font_;
   float tile_size_;
@@ -22,7 +19,9 @@ class Renderer {
   void DrawPlayer(Player& player);
   void DrawEnemies(Room& room);
   void DrawDestructibles(Room& room);
+  void DrawChests(Room& room);
   void DrawUI(GameState& game);
+  void DrawFloorItems(Room& room);
 
   sf::Text MakeText(const std::string& str, float x, float y, sf::Color color,
                     int size);
