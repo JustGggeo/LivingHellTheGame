@@ -133,6 +133,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Abilities.cpp" />
+    <ClCompile Include="Ability.cpp" />
     <ClCompile Include="Chest.cpp" />
     <ClCompile Include="Consumable.cpp" />
     <ClCompile Include="Destructible.cpp" />
@@ -142,15 +144,19 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="LevelGenerator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Room.cpp" />
+    <ClCompile Include="HeatPurge.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TurnSystem.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Abilities.h" />
+    <ClInclude Include="Ability.h" />
     <ClInclude Include="Chest.h" />
     <ClInclude Include="Consumable.h" />
     <ClInclude Include="Destructible.h" />
@@ -158,8 +164,10 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GameDatabase.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="HeatPurge.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="LevelGenerator.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Room.h" />

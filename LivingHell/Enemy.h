@@ -7,6 +7,7 @@
 enum class EnemyState { kPatrolling, kChasing, kAttacking, kDead };
 
 class Player;
+class Room;
 
 class Enemy : public Entity {
  public:
@@ -14,7 +15,7 @@ class Enemy : public Entity {
         int heat_damage, int exp_reward, const std::string& enemy_id);
 
   void TakeDamage(int dmg) override;
-  void Act(Player& player);
+  void Act(Player& player, Room& room);
 
   int GetExpReward() const;
   int GetHeatDamage() const;
@@ -33,7 +34,9 @@ class Enemy : public Entity {
 
   void UpdateState(Player& player);
   void Patrol();
-  void ChasePlayer(Player& player);
+  void ChasePlayer(Player& player, Room& room);
   void AttackPlayer(Player& player);
   int GetDistanceTo(int target_x, int target_y) const;
+  void UpdateState(Player& player, Room& room);
+  bool HasLineOfSight(int target_x, int target_y, Room& room) const;
 };

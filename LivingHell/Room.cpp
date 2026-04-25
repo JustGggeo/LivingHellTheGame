@@ -14,10 +14,7 @@ Room::Room(int width, int height, RoomType type)
 void Room::GenerateBasicLayout() {
   for (int y = 0; y < height_; y++) {
     for (int x = 0; x < width_; x++) {
-      TileType t = (x == 0 || x == width_ - 1 || y == 0 || y == height_ - 1)
-                       ? TileType::kWall
-                       : TileType::kFloor;
-      tiles_[y * width_ + x] = Tile(x, y, t);
+      tiles_[y * width_ + x] = Tile(x, y, TileType::kWall);
     }
   }
 }
@@ -48,6 +45,18 @@ void Room::RemoveDeadEnemies(Player& player) {
     } else {
       ++it;
     }
+  }
+}
+
+void Enemy::UpdateState(Player& player, Room& room) {
+  int dist = GetDistanceTo(player.GetX(), player.GetY());
+  if (dist <= attack_range_ &&
+      HasLineOfSight(player.GetX(), player.GetY(), room)) {
+    state_ = EnemyState::kAttacking;
+  } else if (dist <= 5) {
+    state_ = EnemyState::kChasing;
+  } else {
+    state_ = EnemyState::kPatrolling;
   }
 }
 

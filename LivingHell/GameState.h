@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "GameDatabase.h"
+#include "LevelGenerator.h"
 #include "Player.h"
 #include "Room.h"
 #include "TurnSystem.h"
@@ -14,7 +15,8 @@ class GameState {
  public:
   GameState();
 
-  void Init(const std::string& enemies_path, const std::string& items_path);
+  void Init(const std::string& enemies_path, const std::string& items_path,
+            const std::string& rooms_path);
   void ProcessAction(Action action);
 
   Player& GetPlayer();
@@ -30,7 +32,10 @@ class GameState {
   GameDatabase database_;
   int current_circle_;
   GameStatus status_;
+  LevelGenerator level_generator_;
 
   void CheckStatus();
   void LoadNextRoom();
+  void SpawnEnemies();
+  void ApplyGeneratedRooms();
 };

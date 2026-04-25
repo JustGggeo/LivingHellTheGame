@@ -18,6 +18,7 @@ class Renderer {
   void DrawRoom(Room& room);
   void DrawPlayer(Player& player);
   void DrawEnemies(Room& room);
+  void DrawDestructibles(Room& room);
   void DrawUI(GameState& game);
 
   sf::Text MakeText(const std::string& str, float x, float y, sf::Color color,

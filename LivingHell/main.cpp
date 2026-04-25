@@ -15,6 +15,15 @@ int main() {
       if (event->is<sf::Event::Closed>()) window.close();
 
       if (const auto* key = event->getIf<sf::Event::KeyPressed>()) {
+        // Escape всегда закрывает
+        if (key->code == sf::Keyboard::Key::Escape) {
+          window.close();
+          continue;
+        }
+
+        // При победе/поражении не обрабатываем ходы
+        if (game.GetStatus() != GameStatus::kPlaying) continue;
+
         Action action = Action::kWait;
         switch (key->code) {
           case sf::Keyboard::Key::Up:
@@ -32,10 +41,26 @@ int main() {
           case sf::Keyboard::Key::E:
             action = Action::kUseItem;
             break;
+          case sf::Keyboard::Key::Num1:
+            action = Action::kUseAbility1;
+            break;
+          case sf::Keyboard::Key::Num2:
+            action = Action::kUseAbility2;
+            break;
+          case sf::Keyboard::Key::Num3:
+            action = Action::kUseAbility3;
+            break;
+          case sf::Keyboard::Key::Num4:
+            action = Action::kUseAbility4;
+            break;
+          case sf::Keyboard::Key::Num5:
+            action = Action::kUseAbility5;
+            break;
+
           default:
             break;
         }
-        if (key->code != sf::Keyboard::Key::Escape) game.ProcessAction(action);
+        game.ProcessAction(action);
       }
     }
 

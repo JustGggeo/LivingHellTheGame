@@ -1,10 +1,13 @@
 #include "TurnSystem.h"
 
+#include "Player.h"
+
 TurnSystem::TurnSystem(int timer_limit)
     : turn_count_(0),
       timer_limit_(timer_limit),
       current_timer_(timer_limit),
-      game_over_(false) {}
+      game_over_(false),
+      reached_exit_(false) {}
 
 void TurnSystem::ProcessTurn(Action action, Player& player, Room& room) {
   if (game_over_) return;
@@ -18,6 +21,7 @@ void TurnSystem::ProcessTurn(Action action, Player& player, Room& room) {
 
   current_timer_--;
   turn_count_++;
+  player.TickAbilities();
 
   if (!player.IsAlive() || current_timer_ <= 0) game_over_ = true;
 }
@@ -61,23 +65,60 @@ void TurnSystem::ProcessPlayerAction(Action action, Player& player,
     case Action::kUseItem:
       player.UseItem(player.GetInventory().GetActiveIndex());
       return;
+    case Action::kUseAbility1:
+      player.UseAbility(0, room);
+      return;
+    case Action::kUseAbility2:
+      player.UseAbility(1, room);
+      return;
+    case Action::kUseAbility3:
+      player.UseAbility(2, room);
+      return;
+    case Action::kUseAbility4:
+      player.UseAbility(3, room);
+      return;
+    case Action::kUseAbility5:
+      player.UseAbility(4, room);
+      return;
+
     default:
       return;
   }
 
   int new_x = player.GetX() + dx;
   int new_y = player.GetY() + dy;
-  if (new_x >= 0 && new_x < room.GetWidth() && new_y >= 0 &&
-      new_y < room.GetHeight() && room.GetTile(new_x, new_y).IsWalkable()) {
+  bool tile_ok = new_x >= 0 && new_x < room.GetWidth() && new_y >= 0 &&
+                 new_y < room.GetHeight() &&
+                 room.GetTile(new_x, new_y).IsWalkable();
+
+  bool enemy_on_tile = false;
+  for (const auto& enemy : room.GetEnemies()) {
+    if (enemy->IsAlive() && enemy->GetX() == new_x && enemy->GetY() == new_y) {
+      enemy_on_tile = true;
+      break;
+    }
+  }
+
+  bool destructible_on_tile = false;
+  for (const auto& d : room.GetDestructibles()) {
+    if (d->IsAlive() && d->GetX() == new_x && d->GetY() == new_y) {
+      destructible_on_tile = true;
+      break;
+    }
+  }
+
+  if (tile_ok && !enemy_on_tile && !destructible_on_tile) {
     player.Move(dx, dy);
+    if (room.GetTile(new_x, new_y).GetType() == TileType::kExit)
+      reached_exit_ = true;
   } else {
-    player.AddCoreHeat(1);  // штраф за неудачный ход
+    player.AddCoreHeat(1);
   }
 }
 
 void TurnSystem::ResolveEnemies(Player& player, Room& room) {
   for (auto& enemy : room.GetEnemies()) {
-    if (enemy->IsAlive()) enemy->Act(player);
+    if (enemy->IsAlive()) enemy->Act(player, room);
   }
 }
 
@@ -92,3 +133,4 @@ bool TurnSystem::IsTimeOut() const { return current_timer_ <= 0; }
 bool TurnSystem::IsGameOver() const { return game_over_; }
 int TurnSystem::GetTurnCount() const { return turn_count_; }
 int TurnSystem::GetCurrentTimer() const { return current_timer_; }
+bool TurnSystem::PlayerReachedExit() const { return reached_exit_; }

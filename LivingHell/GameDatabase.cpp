@@ -72,3 +72,37 @@ std::vector<std::string> GameDatabase::SplitCsv(const std::string& line) const {
   while (std::getline(ss, field, ',')) result.push_back(field);
   return result;
 }
+
+void GameDatabase::LoadRooms(const std::string& path) {
+  std::ifstream file(path);
+  if (!file.is_open()) return;
+  std::string line;
+  std::getline(file, line);
+  while (std::getline(file, line)) {
+    auto fields = SplitCsv(line);
+    if (fields.size() < 11) continue;
+    RoomData data;
+    data.room_type = fields[0];
+    data.width = std::stoi(fields[1]);
+    data.height = std::stoi(fields[2]);
+    data.min_enemies = std::stoi(fields[3]);
+    data.max_enemies = std::stoi(fields[4]);
+    data.has_chest = std::stoi(fields[5]);
+    data.has_key = std::stoi(fields[6]);
+    data.has_soul_ashurn = std::stoi(fields[7]);
+    data.spawn_weight_c1 = std::stof(fields[8]);
+    data.spawn_weight_c2 = std::stof(fields[9]);
+    data.spawn_weight_c3 = std::stof(fields[10]);
+    rooms_.push_back(data);
+  }
+}
+
+const RoomData* GameDatabase::GetRoomData(const std::string& room_type) const {
+  for (const auto& r : rooms_)
+    if (r.room_type == room_type) return &r;
+  return nullptr;
+}
+
+const std::vector<RoomData>& GameDatabase::GetAllRooms() const {
+  return rooms_;
+}

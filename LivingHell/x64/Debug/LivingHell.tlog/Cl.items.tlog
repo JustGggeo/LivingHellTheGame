@@ -1,3 +1,5 @@
+C:\Users\JustGeo\source\repos\LivingHell\LivingHell\Abilities.cpp;C:\Users\JustGeo\source\repos\LivingHell\LivingHell\x64\Debug\Abilities.obj
+C:\Users\JustGeo\source\repos\LivingHell\LivingHell\Ability.cpp;C:\Users\JustGeo\source\repos\LivingHell\LivingHell\x64\Debug\Ability.obj
 C:\Users\JustGeo\source\repos\LivingHell\LivingHell\Chest.cpp;C:\Users\JustGeo\source\repos\LivingHell\LivingHell\x64\Debug\Chest.obj
 C:\Users\JustGeo\source\repos\LivingHell\LivingHell\Consumable.cpp;C:\Users\JustGeo\source\repos\LivingHell\LivingHell\x64\Debug\Consumable.obj
 C:\Users\JustGeo\source\repos\LivingHell\LivingHell\Destructible.cpp;C:\Users\JustGeo\source\repos\LivingHell\LivingHell\x64\Debug\Destructible.obj
@@ -7,10 +9,12 @@ C:\Users\JustGeo\source\repos\LivingHell\LivingHell\GameDatabase.cpp;C:\Users\Ju
 C:\Users\JustGeo\source\repos\LivingHell\LivingHell\GameState.cpp;C:\Users\JustGeo\source\repos\LivingHell\LivingHell\x64\Debug\GameState.obj
 C:\Users\JustGeo\source\repos\LivingHell\LivingHell\Inventory.cpp;C:\Users\JustGeo\source\repos\LivingHell\LivingHell\x64\Debug\Inventory.obj
 C:\Users\JustGeo\source\repos\LivingHell\LivingHell\Item.cpp;C:\Users\JustGeo\source\repos\LivingHell\LivingHell\x64\Debug\Item.obj
+C:\Users\JustGeo\source\repos\LivingHell\LivingHell\LevelGenerator.cpp;C:\Users\JustGeo\source\repos\LivingHell\LivingHell\x64\Debug\LevelGenerator.obj
 C:\Users\JustGeo\source\repos\LivingHell\LivingHell\main.cpp;C:\Users\JustGeo\source\repos\LivingHell\LivingHell\x64\Debug\main.obj
 C:\Users\JustGeo\source\repos\LivingHell\LivingHell\Player.cpp;C:\Users\JustGeo\source\repos\LivingHell\LivingHell\x64\Debug\Player.obj
 C:\Users\JustGeo\source\repos\LivingHell\LivingHell\Renderer.cpp;C:\Users\JustGeo\source\repos\LivingHell\LivingHell\x64\Debug\Renderer.obj
 C:\Users\JustGeo\source\repos\LivingHell\LivingHell\Room.cpp;C:\Users\JustGeo\source\repos\LivingHell\LivingHell\x64\Debug\Room.obj
+C:\Users\JustGeo\source\repos\LivingHell\LivingHell\HeatPurge.cpp;C:\Users\JustGeo\source\repos\LivingHell\LivingHell\x64\Debug\HeatPurge.obj
 C:\Users\JustGeo\source\repos\LivingHell\LivingHell\Tile.cpp;C:\Users\JustGeo\source\repos\LivingHell\LivingHell\x64\Debug\Tile.obj
 C:\Users\JustGeo\source\repos\LivingHell\LivingHell\TurnSystem.cpp;C:\Users\JustGeo\source\repos\LivingHell\LivingHell\x64\Debug\TurnSystem.obj
 C:\Users\JustGeo\source\repos\LivingHell\LivingHell\Weapon.cpp;C:\Users\JustGeo\source\repos\LivingHell\LivingHell\x64\Debug\Weapon.obj

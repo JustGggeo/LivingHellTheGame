@@ -9,13 +9,13 @@
 struct EnemyData {
   std::string id;
   std::string name;
-  int health;
-  int damage;
-  int armor;
-  int attack_range;
-  int move_speed;
-  int heat_damage;
-  int exp_reward;
+  int health = 0;
+  int damage = 0;
+  int armor = 0;
+  int attack_range = 0;
+  int move_speed = 0;
+  int heat_damage = 0;
+  int exp_reward = 0;
   std::string circle;
 };
 
@@ -23,9 +23,23 @@ struct ItemData {
   std::string id;
   std::string name;
   std::string type;
-  int slots_required;
-  float effect_value;
+  int slots_required = 0;
+  float effect_value = 0.f;
   std::string effect_type;
+};
+
+struct RoomData {
+  std::string room_type;
+  int width = 0;
+  int height = 0;
+  int min_enemies = 0;
+  int max_enemies = 0;
+  bool has_chest = false;
+  bool has_key = false;
+  bool has_soul_ashurn = false;
+  float spawn_weight_c1 = 0.f;
+  float spawn_weight_c2 = 0.f;
+  float spawn_weight_c3 = 0.f;
 };
 
 class GameDatabase {
@@ -41,9 +55,15 @@ class GameDatabase {
   const std::vector<EnemyData>& GetAllEnemies() const;
   const std::vector<ItemData>& GetAllItems() const;
 
+  void LoadRooms(const std::string& path);
+  const RoomData* GetRoomData(const std::string& room_type) const;
+  const std::vector<RoomData>& GetAllRooms() const;
+
  private:
   std::vector<EnemyData> enemies_;
   std::vector<ItemData> items_;
 
   std::vector<std::string> SplitCsv(const std::string& line) const;
+
+  std::vector<RoomData> rooms_;
 };
