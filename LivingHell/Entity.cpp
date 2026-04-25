@@ -4,11 +4,11 @@ Entity::Entity(int x, int y, int max_health)
     : x_(x), y_(y), health_(max_health), max_health_(max_health) {}
 
 void Entity::TakeDamage(int dmg) {
-  if (dmg > 0) {
-    health_ -= dmg;
-    if (health_ < 0) health_ = 0;
-  }
+  health_ -= dmg;
+  if (health_ < 0) health_ = 0;
+  if (health_ > max_health_) health_ = max_health_;
 }
+
 
 bool Entity::Move(int dx, int dy) {
   x_ += dx;

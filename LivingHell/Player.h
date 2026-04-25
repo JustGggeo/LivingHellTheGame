@@ -13,7 +13,6 @@ class Player : public Entity {
 
   Inventory& GetInventory();
 
-  void TakeDamage(int dmg) override;
   bool Move(int dx, int dy) override;
 
   void GainExp(int amount);

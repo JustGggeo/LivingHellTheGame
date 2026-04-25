@@ -21,7 +21,7 @@ void GameDatabase::LoadEnemies(const std::string& path) {
     data.move_speed = std::stoi(fields[6]);
     data.heat_damage = std::stoi(fields[7]);
     data.exp_reward = std::stoi(fields[8]);
-    data.circle = fields[9];
+    data.circle = std::stoi(fields[9]);
     enemies_.push_back(data);
   }
 }

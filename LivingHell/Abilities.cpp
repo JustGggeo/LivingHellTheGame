@@ -17,6 +17,8 @@ static std::vector<Enemy*> GetAdjacentEnemies(Player& player, Room& room) {
   return result;
 }
 
+
+
 // ── 1. Обычный удар ──────────────────────────────────────
 int BasicAttack::GetDamage(const Player& player) const {
   int base = 1 + (player.GetLevel() - 1);  // растёт с уровнем
@@ -32,7 +34,6 @@ void BasicAttack::Activate(Player& player, Room& room) {
   int range = GetRange(player);
   int dmg = GetDamage(player);
 
-  // если бафф Эмиссии активен — добавляем урон
   if (player.HasEmissionBuff()) {
     dmg += player.GetCoreHeat();
     player.ClearEmissionBuff();
@@ -45,17 +46,14 @@ void BasicAttack::Activate(Player& player, Room& room) {
     if (dx <= range && dy <= range && e->IsAlive()) e->TakeDamage(dmg);
   }
 
-  for (auto& d : room.GetDestructibles()) {
-    int dx = std::abs(d->GetX() - px);
-    int dy = std::abs(d->GetY() - py);
-    if (dx <= range && dy <= range && d->IsAlive()) {
-      d->TakeDamage(dmg);
-      if (!d->IsAlive()) player.GainExp(d->GetExpReward());
-    }
+  // Добавить — атака по разрушаемым объектам
+  for (auto& obj : room.GetDestructibles()) {
+    int dx = std::abs(obj->GetX() - px);
+    int dy = std::abs(obj->GetY() - py);
+    if (dx <= range && dy <= range && obj->IsAlive()) obj->TakeDamage(dmg);
   }
 
-  if (current_cooldown_ == 0)  // кулдаун 0, но сбрасываем если нужно
-    current_cooldown_ = cooldown_;
+  if (current_cooldown_ == 0) current_cooldown_ = cooldown_;
 }
 
 // ── 2. Эмиссия ───────────────────────────────────────────

@@ -66,11 +66,6 @@ void Player::AddAttackDamageBonus(int val) { attack_damage_bonus_ += val; }
 
 void Player::AddAttackRangeBonus(int val) { attack_range_bonus_ += val; }
 
-void Player::TakeDamage(int dmg) {
-  Entity::TakeDamage(dmg);
-  if (health_ <= 0) health_ = 0;
-}
-
 bool Player::Move(int dx, int dy) {
   x_ += dx;
   y_ += dy;

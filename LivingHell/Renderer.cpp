@@ -1,4 +1,5 @@
 #include "Renderer.h"
+#include "DroppableChest.h"
 
 Renderer::Renderer(sf::RenderWindow& window, const std::string& font_path)
     : window_(window), tile_size_(20.f) {
@@ -7,10 +8,12 @@ Renderer::Renderer(sf::RenderWindow& window, const std::string& font_path)
 
 void Renderer::Draw(GameState& game) {
   DrawRoom(game.GetCurrentRoom());
+  DrawChests(game.GetCurrentRoom());      // добавить
+  DrawFloorItems(game.GetCurrentRoom());  // добавить
   DrawPlayer(game.GetPlayer());
   DrawEnemies(game.GetCurrentRoom());
-  DrawDestructibles(game.GetCurrentRoom());
   DrawUI(game);
+
 }
 
 void Renderer::DrawRoom(Room& room) {
@@ -49,31 +52,11 @@ void Renderer::DrawPlayer(Player& player) {
 
 void Renderer::DrawEnemies(Room& room) {
   for (auto& enemy : room.GetEnemies()) {
-    std::string symbol;
-    sf::Color color;
-
-    if (enemy->GetEnemyId() == "chertila") {
-      symbol = "e";
-      color = sf::Color(255, 100, 100);  // светло-красный
-    } else if (enemy->GetEnemyId() == "demon") {
-      symbol = "D";
-      color = sf::Color(255, 0, 0);  // ярко-красный, большая буква
-    } else {
-      symbol = "E";
-      color = sf::Color(200, 50, 50);
-    }
-
+    std::string symbol = "E";
+    sf::Color color = sf::Color(255, 80, 80);
+    if (enemy->GetEnemyId() == "infernal_demon") color = sf::Color(255, 0, 0);
     auto t = MakeText(symbol, enemy->GetX() * tile_size_,
                       enemy->GetY() * tile_size_, color, 16);
-    window_.draw(t);
-  }
-}
-
-void Renderer::DrawDestructibles(Room& room) {
-  for (auto& d : room.GetDestructibles()) {
-    if (!d->IsAlive()) continue;
-    auto t = MakeText("*", d->GetX() * tile_size_, d->GetY() * tile_size_,
-                      sf::Color(150, 100, 255), 16);
     window_.draw(t);
   }
 }
@@ -86,8 +69,8 @@ void Renderer::DrawUI(GameState& game) {
   for (int i = 0; i < (int)p.GetAbilities().size(); i++) {
     auto& ab = p.GetAbilities()[i];
     sf::Color c = ab->IsReady() ? sf::Color::Cyan : sf::Color(100, 100, 100);
-    std::string label = "[" + std::to_string(i + 1) + "] " + ab->GetName() +
-                        (ab->IsReady() ? "" : " (cd)");
+
+    std::string label = "[" + std::to_string(i + 1) + "] " + ab->GetName() + (ab->IsReady() ? "" : " (cd)");
     window_.draw(MakeText(label, ui_x, abl, c, 13));
     abl += 18.f;
   }
@@ -118,4 +101,24 @@ sf::Text Renderer::MakeText(const std::string& str, float x, float y,
   text.setPosition({x, y});
   text.setFillColor(color);
   return text;
+}
+
+void Renderer::DrawChests(Room& room) {
+  for (auto& obj : room.GetDestructibles()) {
+    auto* chest = dynamic_cast<DroppableChest*>(obj.get());
+    if (chest && chest->IsAlive()) {
+      auto t =
+          MakeText("C", chest->GetX() * tile_size_, chest->GetY() * tile_size_,
+                   sf::Color(200, 150, 50), 16);
+      window_.draw(t);
+    }
+  }
+}
+
+void Renderer::DrawFloorItems(Room& room) {
+  for (const auto& entry : room.GetFloorItems()) {
+    auto t = MakeText("i", entry.x * tile_size_, entry.y * tile_size_,
+                      sf::Color(50, 200, 255), 16);
+    window_.draw(t);
+  }
 }
