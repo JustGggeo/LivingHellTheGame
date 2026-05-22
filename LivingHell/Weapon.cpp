@@ -10,9 +10,7 @@ Weapon::Weapon(const std::string& item_id, const std::string& name,
       damage_(damage),
       syphon_percent_(syphon_percent) {}
 
-void Weapon::Use(Player& player) {
-  // Выбор оружия как активного — реализуем через Inventory
-}
+void Weapon::Use(Player& player) {}
 
 int Weapon::GetDamage() const { return damage_; }
 int Weapon::GetMinRange() const { return min_range_; }

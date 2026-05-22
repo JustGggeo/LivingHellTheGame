@@ -4,7 +4,7 @@
 #include "Player.h"
 #include "Room.h"
 
-// ── Вспомогательная функция: враги на соседних клетках ───
+// Враги на соседних клетках
 static std::vector<Enemy*> GetAdjacentEnemies(Player& player, Room& room) {
   std::vector<Enemy*> result;
   int px = player.GetX(), py = player.GetY();
@@ -17,7 +17,7 @@ static std::vector<Enemy*> GetAdjacentEnemies(Player& player, Room& room) {
   return result;
 }
 
-// ── 1. Обычный удар ──────────────────────────────────────
+// 1. Обычный удар
 int BasicAttack::GetDamage(const Player& player) const {
   int base = 1 + (player.GetLevel() - 1);  // растёт с уровнем
   return base + player.GetAttackDamageBonus();
@@ -44,7 +44,6 @@ void BasicAttack::Activate(Player& player, Room& room) {
     if (dx <= range && dy <= range && e->IsAlive()) e->TakeDamage(dmg);
   }
 
-  // Добавить — атака по разрушаемым объектам
   for (auto& obj : room.GetDestructibles()) {
     int dx = std::abs(obj->GetX() - px);
     int dy = std::abs(obj->GetY() - py);
@@ -57,14 +56,14 @@ void BasicAttack::Activate(Player& player, Room& room) {
   if (current_cooldown_ == 0) current_cooldown_ = cooldown_;
 }
 
-// ── 2. Эмиссия ───────────────────────────────────────────
+// 2. Эмиссия
 void Emission::Activate(Player& player, Room& room) {
   if (!IsReady()) return;
   player.SetEmissionBuff(true);
   current_cooldown_ = cooldown_;
 }
 
-// ── 3. Фазировка ─────────────────────────────────────────
+// 3. Фазировка
 void Phasing::Activate(Player& player, Room& room) {
   if (!IsReady()) return;
   player.AddCoreHeat(2);
@@ -75,7 +74,7 @@ void Phasing::Activate(Player& player, Room& room) {
   current_cooldown_ = cooldown_;
 }
 
-// ── 4. Деформация ────────────────────────────────────────
+// 4. Деформация
 void Deformation::Activate(Player& player, Room& room) {
   if (!IsReady()) return;
   int heat = player.GetCoreHeat();
@@ -87,7 +86,7 @@ void Deformation::Activate(Player& player, Room& room) {
   current_cooldown_ = cooldown_;
 }
 
-// ── 5. Дезинтеграция ─────────────────────────────────────
+// 5. Дезинтеграция
 void Disintegration::Activate(Player& player, Room& room) {
   if (!IsReady()) return;
   int heat = player.GetCoreHeat();

@@ -50,9 +50,7 @@ void Enemy::UpdateState(Player& player, Room& room) {
   }
 }
 
-void Enemy::Patrol() {
-  // Пока заглушка — позже добавим случайное перемещение
-}
+void Enemy::Patrol() {}
 
 void Enemy::ChasePlayer(Player& player, Room& room) {
   int dist = GetDistanceTo(player.GetX(), player.GetY());
@@ -73,7 +71,7 @@ void Enemy::ChasePlayer(Player& player, Room& room) {
       dx = -dx;
       dy = -dy;
     } else if (dist <= attack_range_) {
-      // Уже в зоне атаки — не двигаемся
+      // Уже в зоне атаки, не двигаемся
       return;
     }
     // Иначе приближаемся до attack_range
@@ -87,7 +85,6 @@ void Enemy::ChasePlayer(Player& player, Room& room) {
                  new_y < room.GetHeight() &&
                  room.GetTile(new_x, new_y).IsWalkable();
 
-  // --- добавить: проверка destructibles ---
   bool blocked_by_destructible = false;
   for (const auto& d : room.GetDestructibles()) {
     if (d->IsAlive() && d->GetX() == new_x && d->GetY() == new_y) {

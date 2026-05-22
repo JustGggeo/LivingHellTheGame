@@ -1,8 +1,7 @@
 #include "TurnSystem.h"
 
-#include "Player.h"
-
 #include "DroppableChest.h"
+#include "Player.h"
 
 TurnSystem::TurnSystem(int timer_limit)
     : turn_count_(0),
@@ -21,7 +20,7 @@ void TurnSystem::ProcessTurn(Action action, Player& player, Room& room) {
   ResolveEnemies(player, room);
   room.RemoveDeadEnemies(player);
 
-    // Дроп предметов из уничтоженных сундуков
+  // Дроп предметов из уничтоженных сундуков
   for (auto& obj : room.GetDestructibles()) {
     auto* chest = dynamic_cast<DroppableChest*>(obj.get());
     if (chest && !chest->IsAlive() && chest->HasItem()) {
@@ -111,7 +110,7 @@ void TurnSystem::ProcessPlayerAction(Action action, Player& player,
 
   if (tile_ok && !enemy_on_tile) {
     player.Move(dx, dy);
-    // --- добавить проверку выхода ---
+    // Проверка выхода
     if (room.GetTile(new_x, new_y).GetType() == TileType::kExit) {
       reached_exit_ = true;
     }
@@ -123,8 +122,6 @@ void TurnSystem::ProcessPlayerAction(Action action, Player& player,
   } else {
     player.AddCoreHeat(1);
   }
-
-
 }
 
 void TurnSystem::ResolveEnemies(Player& player, Room& room) {

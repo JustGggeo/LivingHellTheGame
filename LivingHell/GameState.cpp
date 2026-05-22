@@ -3,8 +3,8 @@
 #include <cstdlib>
 #include <ctime>
 
-#include "DroppableChest.h"
 #include "Consumable.h"
+#include "DroppableChest.h"
 
 GameState::GameState()
     : player_(1, 1),
@@ -35,14 +35,13 @@ void GameState::ProcessAction(Action action) {
 }
 
 void GameState::CheckStatus() {
-  if (status_ != GameStatus::kPlaying)
-    return;  // <-- добавить, чтоб не перезаписывать статус
+  if (status_ != GameStatus::kPlaying) return;
 
   if (turn_system_.IsGameOver()) {
     status_ = GameStatus::kDefeat;
     return;
   }
-  if (turn_system_.PlayerReachedExit()) {  // <-- добавить
+  if (turn_system_.PlayerReachedExit()) {
     status_ = GameStatus::kVictory;
     return;
   }
@@ -114,7 +113,6 @@ void GameState::ApplyGeneratedRooms() {
                                                      : TileType::kFloor);
       }
     }
-
   }
 
   const RoomPlacement* start = level_generator_.GetStartRoom();

@@ -17,6 +17,6 @@ class Ability {
 
  protected:
   std::string name_;
-  int cooldown_;          // сколько ходов ждать
-  int current_cooldown_;  // 0 = готово
+  int cooldown_;  // сколько ходов ждать
+  int current_cooldown_;
 };
