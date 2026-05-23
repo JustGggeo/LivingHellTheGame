@@ -1,6 +1,2 @@
-﻿  GameState.cpp
-  main.cpp
-  Renderer.cpp
-C:\Users\JustGeo\OneDrive - ITMO UNIVERSITY\Документы\PracticalTasks\LivingHell-CppGame-\LivingHell\Renderer.cpp(7,21): warning C4834: удаление возвращаемого значения функции с атрибутом [[nodiscard]]
-  Создание кода...
+﻿  Player.cpp
   LivingHell.vcxproj -> C:\Users\JustGeo\OneDrive - ITMO UNIVERSITY\Документы\PracticalTasks\LivingHell-CppGame-\x64\Debug\LivingHell.exe
