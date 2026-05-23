@@ -1,5 +1,6 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
 #include <memory>
 #include <vector>
 
@@ -18,12 +19,14 @@ class GameState {
   void Init(const std::string& enemies_path, const std::string& items_path,
             const std::string& rooms_path);
   void ProcessAction(Action action);
+  void Run(sf::RenderWindow& window);
 
   Player& GetPlayer();
   Room& GetCurrentRoom();
   GameStatus GetStatus() const;
   int GetCurrentCircle() const;
   int GetCurrentTimer() const;
+  bool HandleInput(const sf::Event::KeyPressed& key);
 
  private:
   Player player_;

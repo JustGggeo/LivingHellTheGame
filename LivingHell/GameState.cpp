@@ -1,21 +1,25 @@
 #include "GameState.h"
 
+#include <SFML/Graphics.hpp>
 #include <cstdlib>
 #include <ctime>
 
+#include "Constants.h"
 #include "Consumable.h"
 #include "DroppableChest.h"
+#include "Renderer.h"
 
 GameState::GameState()
     : player_(1, 1),
-      turn_system_(100),
-      level_generator_(30, 30),
+      turn_system_(Constants::kTimerLimit),
+      level_generator_(Constants::kFieldSize, Constants::kFieldSize),
       current_circle_(1),
       status_(GameStatus::kPlaying) {
   srand(static_cast<unsigned int>(time(nullptr)));
   Init("enemies.csv", "items.csv", "rooms.csv");
   level_generator_.Generate(current_circle_, database_);
-  current_room_ = std::make_unique<Room>(30, 30, RoomType::kCombat);
+  current_room_ = std::make_unique<Room>(
+      Constants::kFieldSize, Constants::kFieldSize, RoomType::kCombat);
   ApplyGeneratedRooms();
   SpawnEnemies();
 }
@@ -69,9 +73,11 @@ void GameState::SpawnEnemies() {
 
     int x = 0, y = 0;
     bool found = false;
-    for (int attempt = 0; attempt < 100; attempt++) {
-      x = 2 + rand() % 26;
-      y = 2 + rand() % 26;
+    for (int attempt = 0; attempt < Constants::kMaxSpawnAttempts; attempt++) {
+      x = Constants::kSpawnMargin +
+          rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
+      y = Constants::kSpawnMargin +
+          rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
       if (current_room_->GetTile(x, y).IsWalkable() &&
           !(x == player_.GetX() && y == player_.GetY())) {
         found = true;
@@ -85,12 +91,14 @@ void GameState::SpawnEnemies() {
         data.heat_damage, data.exp_reward, data.id);
     current_room_->AddEnemy(std::move(enemy));
 
-    int soul_count = 3 + rand() % 3;
+    int soul_count = Constants::kSoulAshurnCount + rand() % 3;
     for (int i = 0; i < soul_count; i++) {
       bool found = false;
-      for (int attempt = 0; attempt < 100; attempt++) {
-        int x = 2 + rand() % 26;
-        int y = 2 + rand() % 26;
+      for (int attempt = 0; attempt < Constants::kMaxSpawnAttempts; attempt++) {
+        int x = Constants::kSpawnMargin +
+                rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
+        int y = Constants::kSpawnMargin +
+                rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
         if (current_room_->GetTile(x, y).IsWalkable() &&
             !(x == player_.GetX() && y == player_.GetY())) {
           current_room_->AddDestructible(std::make_unique<SoulAshurn>(x, y));
@@ -151,9 +159,12 @@ void GameState::ApplyGeneratedRooms() {
   }
   // Спавним сундук в случайной проходимой клетке
   bool chest_placed = false;
-  for (int attempt = 0; attempt < 100 && !chest_placed; attempt++) {
-    int x = 2 + rand() % 26;
-    int y = 2 + rand() % 26;
+  for (int attempt = 0; attempt < Constants::kMaxSpawnAttempts && !chest_placed;
+       attempt++) {
+    int x = Constants::kSpawnMargin +
+            rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
+    int y = Constants::kSpawnMargin +
+            rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
     if (current_room_->GetTile(x, y).IsWalkable()) {
       auto chest = std::make_unique<DroppableChest>(
           x, y,
@@ -162,5 +173,74 @@ void GameState::ApplyGeneratedRooms() {
       current_room_->AddDestructible(std::move(chest));
       chest_placed = true;
     }
+  }
+}
+
+bool GameState::HandleInput(const sf::Event::KeyPressed& key) {
+  if (key.code == sf::Keyboard::Key::Escape) return true;
+  if (status_ != GameStatus::kPlaying) return false;
+
+  Action action = Action::kWait;
+  switch (key.code) {
+    case sf::Keyboard::Key::W:
+      action = Action::kMoveUp;
+      break;
+    case sf::Keyboard::Key::S:
+      action = Action::kMoveDown;
+      break;
+    case sf::Keyboard::Key::A:
+      action = Action::kMoveLeft;
+      break;
+    case sf::Keyboard::Key::D:
+      action = Action::kMoveRight;
+      break;
+    case sf::Keyboard::Key::Q:
+      action = Action::kMoveUpLeft;
+      break;
+    case sf::Keyboard::Key::E:
+      action = Action::kMoveUpRight;
+      break;
+    case sf::Keyboard::Key::Z:
+      action = Action::kMoveDownLeft;
+      break;
+    case sf::Keyboard::Key::C:
+      action = Action::kMoveDownRight;
+      break;
+    case sf::Keyboard::Key::X:
+      action = Action::kUseItem;
+      break;
+    case sf::Keyboard::Key::Num1:
+      action = Action::kUseAbility1;
+      break;
+    case sf::Keyboard::Key::Num2:
+      action = Action::kUseAbility2;
+      break;
+    case sf::Keyboard::Key::Num3:
+      action = Action::kUseAbility3;
+      break;
+    case sf::Keyboard::Key::Num4:
+      action = Action::kUseAbility4;
+      break;
+    case sf::Keyboard::Key::Num5:
+      action = Action::kUseAbility5;
+      break;
+    default:
+      break;
+  }
+  ProcessAction(action);
+  return false;
+}
+
+void GameState::Run(sf::RenderWindow& window) {
+  Renderer renderer(window, "cour.ttf");
+  while (window.isOpen()) {
+    while (const std::optional event = window.pollEvent()) {
+      if (event->is<sf::Event::Closed>()) window.close();
+      if (const auto* key = event->getIf<sf::Event::KeyPressed>())
+        if (HandleInput(*key)) window.close();
+    }
+    window.clear(sf::Color(20, 20, 20));
+    renderer.Draw(*this);
+    window.display();
   }
 }

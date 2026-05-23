@@ -159,6 +159,7 @@
     <ClInclude Include="Abilities.h" />
     <ClInclude Include="Ability.h" />
     <ClInclude Include="Chest.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="Consumable.h" />
     <ClInclude Include="Destructible.h" />
     <ClInclude Include="DroppableChest.h" />

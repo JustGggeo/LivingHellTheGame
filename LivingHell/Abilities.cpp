@@ -5,7 +5,7 @@
 #include "Room.h"
 
 // Враги на соседних клетках
-static std::vector<Enemy*> GetAdjacentEnemies(Player& player, Room& room) {
+std::vector<Enemy*> GetAdjacentEnemies(Player& player, Room& room) {
   std::vector<Enemy*> result;
   int px = player.GetX(), py = player.GetY();
   for (auto& e : room.GetEnemies()) {
