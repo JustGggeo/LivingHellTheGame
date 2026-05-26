@@ -1,5 +1,6 @@
 #pragma once
 
+#include "GameDatabase.h"
 #include "Player.h"
 #include "Room.h"
 
@@ -25,7 +26,7 @@ enum class Action {
 
 class TurnSystem {
  public:
-  TurnSystem(int timer_limit);
+  TurnSystem(int timer_limit, const GameDatabase& db);
 
   void ProcessTurn(Action action, Player& player, Room& room);
   bool IsTimeOut() const;
@@ -40,6 +41,7 @@ class TurnSystem {
   int current_timer_;
   bool game_over_;
   bool reached_exit_;
+  const GameDatabase& db_;
 
   void ProcessPlayerAction(Action action, Player& player, Room& room);
   void ResolveEnemies(Player& player, Room& room);

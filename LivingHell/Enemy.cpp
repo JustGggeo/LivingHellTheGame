@@ -1,5 +1,6 @@
 #include "Enemy.h"
 
+#include "Constants.h"
 #include "Player.h"
 #include "Room.h"
 
@@ -43,7 +44,7 @@ void Enemy::UpdateState(Player& player, Room& room) {
   if (dist <= attack_range_ &&
       HasLineOfSight(player.GetX(), player.GetY(), room)) {
     state_ = EnemyState::kAttacking;
-  } else if (dist <= 5) {
+  } else if (dist <= Constants::kEnemyVisionRange) {
     state_ = EnemyState::kChasing;
   } else {
     state_ = EnemyState::kPatrolling;

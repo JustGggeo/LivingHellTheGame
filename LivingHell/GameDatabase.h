@@ -42,6 +42,15 @@ struct RoomData {
   float spawn_weight_c3 = 0.f;
 };
 
+struct PlayerLevelData {
+  int level;
+  int max_health;
+  int max_core_heat;
+  int attack_damage_bonus;
+  int attack_range_bonus;
+  int exp_required;  // exp needed (cumulative) to level up from this level
+};
+
 class GameDatabase {
  public:
   GameDatabase() = default;
@@ -59,11 +68,18 @@ class GameDatabase {
   const RoomData* GetRoomData(const std::string& room_type) const;
   const std::vector<RoomData>& GetAllRooms() const;
 
+  void LoadPlayerStats(const std::string& path);
+  const PlayerLevelData* GetPlayerLevelData(int level) const;
+  int GetExpRequired(int level) const;  // exp needed to level up from level
+
  private:
   std::vector<EnemyData> enemies_;
   std::vector<ItemData> items_;
 
+ 
   std::vector<std::string> SplitCsv(const std::string& line) const;
 
   std::vector<RoomData> rooms_;
+
+  std::vector<PlayerLevelData> player_stats_;
 };

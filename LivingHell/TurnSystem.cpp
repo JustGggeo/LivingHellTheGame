@@ -3,12 +3,13 @@
 #include "DroppableChest.h"
 #include "Player.h"
 
-TurnSystem::TurnSystem(int timer_limit)
+TurnSystem::TurnSystem(int timer_limit, const GameDatabase& db)
     : turn_count_(0),
       timer_limit_(timer_limit),
       current_timer_(timer_limit),
       game_over_(false),
-      reached_exit_(false) {}
+      reached_exit_(false),
+      db_(db) {}
 
 void TurnSystem::ProcessTurn(Action action, Player& player, Room& room) {
   if (game_over_) return;

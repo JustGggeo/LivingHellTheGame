@@ -106,3 +106,34 @@ const RoomData* GameDatabase::GetRoomData(const std::string& room_type) const {
 const std::vector<RoomData>& GameDatabase::GetAllRooms() const {
   return rooms_;
 }
+
+void GameDatabase::LoadPlayerStats(const std::string& path) {
+  std::ifstream file(path);
+  if (!file.is_open()) return;
+  std::string line;
+  std::getline(file, line);  // пропускаем заголовок
+  while (std::getline(file, line)) {
+    auto fields = SplitCsv(line);
+    if (fields.size() < 6) continue;
+    PlayerLevelData data;
+    data.level = std::stoi(fields[0]);
+    data.max_health = std::stoi(fields[1]);
+    data.max_core_heat = std::stoi(fields[2]);
+    data.attack_damage_bonus = std::stoi(fields[3]);
+    data.attack_range_bonus = std::stoi(fields[4]);
+    data.exp_required = std::stoi(fields[5]);
+    player_stats_.push_back(data);
+  }
+}
+
+const PlayerLevelData* GameDatabase::GetPlayerLevelData(int level) const {
+  for (const auto& d : player_stats_)
+    if (d.level == level) return &d;
+  return nullptr;
+}
+
+int GameDatabase::GetExpRequired(int level) const {
+  const PlayerLevelData* data = GetPlayerLevelData(level);
+  if (!data) return 0;
+  return data->exp_required;
+}

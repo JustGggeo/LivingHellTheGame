@@ -1,5 +1,6 @@
-﻿#include "Abilities.h"
+#include "Abilities.h"
 
+#include "Constants.h"
 #include "Enemy.h"
 #include "Player.h"
 #include "Room.h"
@@ -19,12 +20,12 @@ std::vector<Enemy*> GetAdjacentEnemies(Player& player, Room& room) {
 
 // 1. Обычный удар
 int BasicAttack::GetDamage(const Player& player) const {
-  int base = 1 + (player.GetLevel() - 1);  // растёт с уровнем
+  int base = Constants::kPlayerInitialAttackRange + (player.GetLevel() - 1);
   return base + player.GetAttackDamageBonus();
 }
 
 int BasicAttack::GetRange(const Player& player) const {
-  return 1 + player.GetAttackRangeBonus();
+  return Constants::kPlayerInitialAttackRange + player.GetAttackRangeBonus();
 }
 
 void BasicAttack::Activate(Player& player, Room& room) {
@@ -66,10 +67,11 @@ void Emission::Activate(Player& player, Room& room) {
 // 3. Фазировка
 void Phasing::Activate(Player& player, Room& room) {
   if (!IsReady()) return;
-  player.AddCoreHeat(2);
-  player.TakeDamage(1);
+  player.AddCoreHeat(Constants::kPhasingHeatGain);
+  player.TakeDamage(Constants::kPhasingSelfDamage);
 
-  for (Enemy* e : GetAdjacentEnemies(player, room)) e->TakeDamage(5);
+  for (Enemy* e : GetAdjacentEnemies(player, room))
+    e->TakeDamage(Constants::kPhasingAoeDamage);
 
   current_cooldown_ = cooldown_;
 }
@@ -78,10 +80,10 @@ void Phasing::Activate(Player& player, Room& room) {
 void Deformation::Activate(Player& player, Room& room) {
   if (!IsReady()) return;
   int heat = player.GetCoreHeat();
-  int heal = heat / 3;  // за каждые 3 единицы — 1 HP
+  int heal = heat / Constants::kDeformationHeatPerHp;
   if (heal > 0) {
-    player.TakeDamage(-heal);   // отрицательный урон = лечение
-    player.AddCoreHeat(-heat);  // снимаем всё тепло
+    player.TakeDamage(-heal);
+    player.AddCoreHeat(-heat);
   }
   current_cooldown_ = cooldown_;
 }
@@ -90,13 +92,13 @@ void Deformation::Activate(Player& player, Room& room) {
 void Disintegration::Activate(Player& player, Room& room) {
   if (!IsReady()) return;
   int heat = player.GetCoreHeat();
-  int dmg = (heat / 2) * 4;  // за каждые 2 единицы — 4 урона
+  int dmg = (heat / Constants::kDisintegrationHeatDivisor) *
+            Constants::kDisintegrationDamageMultiplier;
 
   int px = player.GetX(), py = player.GetY();
-  // 4 направления: вверх, вниз, влево, вправо
   const int dirs[4][2] = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
   for (auto& dir : dirs) {
-    for (int dist = 1; dist <= 5; dist++) {
+    for (int dist = 1; dist <= Constants::kDisintegrationRayLength; dist++) {
       int tx = px + dir[0] * dist;
       int ty = py + dir[1] * dist;
       for (auto& e : room.GetEnemies()) {
@@ -106,6 +108,6 @@ void Disintegration::Activate(Player& player, Room& room) {
     }
   }
 
-  player.AddCoreHeat(5);
+  player.AddCoreHeat(Constants::kDisintegrationHeatGain);
   current_cooldown_ = cooldown_;
 }

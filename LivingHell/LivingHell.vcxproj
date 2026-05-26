@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Abilities.cpp" />
+    <ClCompile Include="AbilityLogger.cpp" />
     <ClCompile Include="Ability.cpp" />
     <ClCompile Include="Chest.cpp" />
     <ClCompile Include="Consumable.cpp" />
@@ -157,6 +158,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Abilities.h" />
+    <ClInclude Include="AbilityLogger.h" />
+    <ClInclude Include="IAbilityObserver.h" />
     <ClInclude Include="Ability.h" />
     <ClInclude Include="Chest.h" />
     <ClInclude Include="Constants.h" />

@@ -10,13 +10,14 @@
 #include "Renderer.h"
 
 GameState::GameState()
-    : player_(1, 1),
-      turn_system_(Constants::kTimerLimit),
+    : player_(1, 1, database_),
+      turn_system_(Constants::kTimerLimit, database_),
       level_generator_(Constants::kFieldSize, Constants::kFieldSize),
       current_circle_(1),
       status_(GameStatus::kPlaying) {
   srand(static_cast<unsigned int>(time(nullptr)));
-  Init("enemies.csv", "items.csv", "rooms.csv");
+  Init("enemies.csv", "items.csv", "rooms.csv", "playerstats.csv");
+  player_.AddAbilityObserver(&ability_logger_);
   level_generator_.Generate(current_circle_, database_);
   current_room_ = std::make_unique<Room>(
       Constants::kFieldSize, Constants::kFieldSize, RoomType::kCombat);
@@ -26,10 +27,12 @@ GameState::GameState()
 
 void GameState::Init(const std::string& enemies_path,
                      const std::string& items_path,
-                     const std::string& rooms_path) {
+                     const std::string& rooms_path,
+                     const std::string& playerstats_path) {
   database_.LoadEnemies(enemies_path);
   database_.LoadItems(items_path);
   database_.LoadRooms(rooms_path);
+  database_.LoadPlayerStats(playerstats_path);
 }
 
 void GameState::ProcessAction(Action action) {
@@ -56,7 +59,8 @@ void GameState::CheckStatus() {
 
 void GameState::LoadNextRoom() {
   current_circle_++;
-  current_room_ = std::make_unique<Room>(30, 30, RoomType::kCombat);
+  current_room_ = std::make_unique<Room>(
+      Constants::kFieldSize, Constants::kFieldSize, RoomType::kCombat);
 }
 
 Player& GameState::GetPlayer() { return player_; }
@@ -91,7 +95,8 @@ void GameState::SpawnEnemies() {
         data.heat_damage, data.exp_reward, data.id);
     current_room_->AddEnemy(std::move(enemy));
 
-    int soul_count = Constants::kSoulAshurnCount + rand() % 3;
+    int soul_count = Constants::kSoulAshurnCount +
+                     rand() % Constants::kSoulSpawnVariation;
     for (int i = 0; i < soul_count; i++) {
       bool found = false;
       for (int attempt = 0; attempt < Constants::kMaxSpawnAttempts; attempt++) {
@@ -125,7 +130,7 @@ void GameState::ApplyGeneratedRooms() {
 
   const RoomPlacement* start = level_generator_.GetStartRoom();
   if (start) {
-    player_ = Player(start->x + 1, start->y + 1);
+    player_ = Player(start->x + 1, start->y + 1, database_);
   }
 
   for (int i = 1; i < static_cast<int>(placements.size()); i++) {
