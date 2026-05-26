@@ -7,9 +7,7 @@ class Ability;
 class Player;
 class Room;
 
-// ======================================================
 // Observer (наблюдатель): реагирует на использование абилок
-// ======================================================
 class IAbilityObserver {
  public:
   virtual ~IAbilityObserver() = default;
@@ -17,10 +15,7 @@ class IAbilityObserver {
                                   Room& room) = 0;
 };
 
-// ======================================================
-// Конкретный наблюдатель: журнал боевых событий
 // Хранит историю использованных абилок за сессию
-// ======================================================
 class AbilityLogger : public IAbilityObserver {
  public:
   void OnAbilityActivated(const Ability& ability, Player& player,
