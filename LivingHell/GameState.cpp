@@ -74,7 +74,6 @@ int GameState::GetCurrentTimer() const {
 }
 
 void GameState::SpawnEnemies() {
-  // Босс спавнится ровно 1 раз на круге 3
   if (current_circle_ == 3) {
     const EnemyData* boss = database_.GetEnemyData("devil");
     if (boss) {
@@ -93,7 +92,6 @@ void GameState::SpawnEnemies() {
     }
   }
 
-  // Обычные враги: пул без босса, разброс растёт с кругом
   std::vector<const EnemyData*> pool;
   for (const auto& data : database_.GetAllEnemies()) {
     if (data.circle <= current_circle_ && data.id != "devil")
@@ -121,7 +119,6 @@ void GameState::SpawnEnemies() {
     }
   }
 
-  // Урны с душами
   int soul_count =
       Constants::kSoulAshurnCount + rand() % Constants::kSoulSpawnVariation;
   for (int i = 0; i < soul_count; i++) {
@@ -185,7 +182,6 @@ void GameState::ApplyGeneratedRooms() {
           placed = true;
         }
   }
-  // Спавним специальные тайлы
   std::vector<TileType> special_pool = {TileType::kAsh};
   if (current_circle_ >= 2) special_pool.push_back(TileType::kMagma);
   if (current_circle_ >= 2) special_pool.push_back(TileType::kIce);
@@ -205,7 +201,6 @@ void GameState::ApplyGeneratedRooms() {
     }
   }
 
-  // Спавним ключ в случайной проходимой клетке
   for (int attempt = 0; attempt < Constants::kMaxSpawnAttempts; attempt++) {
     int x = Constants::kSpawnMargin +
             rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
@@ -217,7 +212,6 @@ void GameState::ApplyGeneratedRooms() {
     }
   }
 
-  // Спавним сундук в случайной проходимой клетке
   for (int attempt = 0; attempt < Constants::kMaxSpawnAttempts; attempt++) {
     int x = Constants::kSpawnMargin +
             rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);

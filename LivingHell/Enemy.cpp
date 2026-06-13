@@ -44,17 +44,14 @@ void Enemy::Act(Player& player, Room& room) {
 }
 
 void Enemy::BossAct(Player& player, Room& room) {
-  // Переход в фазу 2 при <= 50% HP
   if (!enraged_ && health_ <= max_health_ / 2) {
     enraged_ = true;
   }
 
-  // Босс всегда видит игрока — нет patrol
   int dist = GetDistanceTo(player.GetX(), player.GetY());
   if (dist <= attack_range_) {
     AttackPlayer(player);
     if (enraged_) {
-      // Фаза 2: вторая атака + AoE тепло на все соседние клетки
       AttackPlayer(player);
       int px = player.GetX(), py = player.GetY();
       for (int dx = -1; dx <= 1; dx++) {
@@ -99,20 +96,16 @@ void Enemy::ChasePlayer(Player& player, Room& room) {
   // Если attack_range > 1 — держим дистанцию, отступаем если слишком близко
   if (attack_range_ > 1) {
     if (dist <= 1) {
-      // Отступаем от игрока
       dx = -dx;
       dy = -dy;
     } else if (dist <= attack_range_) {
-      // Уже в зоне атаки, не двигаемся
       return;
     }
-    // Иначе приближаемся до attack_range
   }
 
   int new_x = x_ + dx;
   int new_y = y_ + dy;
 
-  // Проверка стен
   bool tile_ok = new_x >= 0 && new_x < room.GetWidth() && new_y >= 0 &&
                  new_y < room.GetHeight() &&
                  room.GetTile(new_x, new_y).IsWalkable();

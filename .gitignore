@@ -3,5 +3,9 @@
 *.user
 *.suo
 *.aps
+x64/
+
+# Claude
+.claude/
 
 !SFML-3.0.2/

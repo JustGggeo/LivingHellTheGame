@@ -131,8 +131,6 @@ int Player::GetAttackRange() const { return attack_range_; }
 Inventory& Player::GetInventory() { return inventory_; }
 const Inventory& Player::GetInventory() const { return inventory_; }
 
-// --- Observer pattern ---
-
 void Player::AddAbilityObserver(IAbilityObserver* observer) {
   ability_observers_.push_back(observer);
 }

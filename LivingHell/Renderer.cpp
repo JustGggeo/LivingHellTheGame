@@ -170,7 +170,6 @@ void Renderer::DrawUI(GameState& game) {
   window_.draw(MakeText("TIME: " + std::to_string(game.GetCurrentTimer()), ui_x,
                         120.f, sf::Color(100, 200, 255), 14));
 
-  // GAME OVER / VICTORY — сразу под последней абилкой
   if (game.GetStatus() == GameStatus::kDefeat)
     window_.draw(MakeText("GAME OVER", ui_x, abl + 8.f, sf::Color::Red, 18));
   else if (game.GetStatus() == GameStatus::kVictory) {
@@ -178,7 +177,6 @@ void Renderer::DrawUI(GameState& game) {
     window_.draw(MakeText("The Hell is collapsing...", ui_x, abl + 30.f, sf::Color(200, 60, 0), 13));
   }
 
-  // Индикатор ключа
   if (p.HasKey()) {
     window_.draw(MakeText("[K] Key: found", ui_x, 405.f,
                           sf::Color(255, 220, 50), 12));
@@ -187,7 +185,6 @@ void Renderer::DrawUI(GameState& game) {
                           sf::Color(100, 100, 100), 12));
   }
 
-  // Инвентарь — фиксировано внизу панели
   const Inventory& inv = p.GetInventory();
   float inv_y = 435.f;
   window_.draw(MakeText(
