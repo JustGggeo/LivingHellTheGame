@@ -6,6 +6,7 @@
 #include "Constants.h"
 #include "GameDatabase.h"
 #include "HeatPurge.h"
+#include "Weapon.h"
 
 Player::Player(int x, int y, const GameDatabase& db)
     : Entity(x, y, Constants::kPlayerInitialHealth),
@@ -67,9 +68,25 @@ const std::vector<std::unique_ptr<Ability>>& Player::GetAbilities() const {
 bool Player::HasEmissionBuff() const { return emission_buff_; }
 void Player::SetEmissionBuff(bool val) { emission_buff_ = val; }
 void Player::ClearEmissionBuff() { emission_buff_ = false; }
+bool Player::HasKey() const { return has_key_; }
+void Player::PickUpKey() { has_key_ = true; }
+void Player::ConsumeKey() { has_key_ = false; }
 
-int Player::GetAttackDamageBonus() const { return attack_damage_bonus_; }
-int Player::GetAttackRangeBonus() const { return attack_range_bonus_; }
+int Player::GetAttackDamageBonus() const {
+  int bonus = attack_damage_bonus_;
+  const Item* active = inventory_.GetActiveItem();
+  if (active && active->GetType() == ItemType::kWeapon)
+    bonus += static_cast<const Weapon*>(active)->GetDamage();
+  return bonus;
+}
+
+int Player::GetAttackRangeBonus() const {
+  int bonus = attack_range_bonus_;
+  const Item* active = inventory_.GetActiveItem();
+  if (active && active->GetType() == ItemType::kWeapon)
+    bonus += static_cast<const Weapon*>(active)->GetMaxRange();
+  return bonus;
+}
 void Player::AddAttackDamageBonus(int val) { attack_damage_bonus_ += val; }
 void Player::AddAttackRangeBonus(int val) { attack_range_bonus_ += val; }
 
@@ -112,6 +129,7 @@ int Player::GetLevel() const { return level_; }
 int Player::GetExp() const { return exp_; }
 int Player::GetAttackRange() const { return attack_range_; }
 Inventory& Player::GetInventory() { return inventory_; }
+const Inventory& Player::GetInventory() const { return inventory_; }
 
 // --- Observer pattern ---
 

@@ -9,10 +9,12 @@ class Renderer {
   Renderer(sf::RenderWindow& window, const std::string& font_path);
 
   void Draw(GameState& game);
+  void DrawTransition(int alpha, int circle);
 
  private:
   sf::RenderWindow& window_;
   sf::Font font_;
+  sf::Clock clock_;
   float tile_size_;
 
   void DrawRoom(Room& room);

@@ -40,6 +40,13 @@ inline constexpr int kPhasingAoeDamage = 5;
 // --- Ability: Deformation ---
 inline constexpr int kDeformationHeatPerHp = 3;
 
+// --- Special tiles ---
+inline constexpr int kMagmaHeat = 1;
+inline constexpr int kLavaHeat = 2;
+inline constexpr int kAshCool = 1;
+inline constexpr int kIceCool = 2;
+inline constexpr int kSpecialTileCount = 6;  // сколько спецтайлов спавнить
+
 // --- Ability: Disintegration ---
 inline constexpr int kDisintegrationHeatDivisor = 2;
 inline constexpr int kDisintegrationDamageMultiplier = 4;

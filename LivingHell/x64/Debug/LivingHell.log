@@ -1,2 +1,3 @@
-﻿  Player.cpp
-  LivingHell.vcxproj -> C:\Users\JustGeo\OneDrive - ITMO UNIVERSITY\Документы\PracticalTasks\LivingHell-CppGame-\x64\Debug\LivingHell.exe
+﻿  Renderer.cpp
+C:\Users\JustGeo\source\repos\LivingHell\LivingHell\Renderer.cpp(11,21): warning C4834: discarding return value of function with [[nodiscard]] attribute
+  LivingHell.vcxproj -> C:\Users\JustGeo\source\repos\LivingHell\x64\Debug\LivingHell.exe

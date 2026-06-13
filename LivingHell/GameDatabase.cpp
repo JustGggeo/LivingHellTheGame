@@ -33,14 +33,15 @@ void GameDatabase::LoadItems(const std::string& path) {
   std::getline(file, line);
   while (std::getline(file, line)) {
     auto fields = SplitCsv(line);
-    if (fields.size() < 6) continue;
+    if (fields.size() < 7) continue;
     ItemData data;
     data.id = fields[0];
     data.name = fields[1];
     data.type = fields[2];
     data.slots_required = std::stoi(fields[3]);
     data.effect_value = std::stof(fields[4]);
-    data.effect_type = fields[5];
+    data.effect_value2 = std::stof(fields[5]);
+    data.effect_type = fields[6];
     items_.push_back(data);
   }
 }

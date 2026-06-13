@@ -34,6 +34,7 @@ class TurnSystem {
   int GetTurnCount() const;
   int GetCurrentTimer() const;
   bool PlayerReachedExit() const;
+  void Reset();
 
  private:
   int turn_count_;

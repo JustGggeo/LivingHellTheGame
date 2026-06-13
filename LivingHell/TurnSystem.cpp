@@ -1,5 +1,6 @@
 #include "TurnSystem.h"
 
+#include "Constants.h"
 #include "DroppableChest.h"
 #include "Player.h"
 
@@ -15,6 +16,16 @@ void TurnSystem::ProcessTurn(Action action, Player& player, Room& room) {
   if (game_over_) return;
 
   ProcessPlayerAction(action, player, room);
+
+  // Эффект тайла под игроком
+  switch (room.GetTile(player.GetX(), player.GetY()).GetType()) {
+    case TileType::kMagma: player.AddCoreHeat(Constants::kMagmaHeat); break;
+    case TileType::kLava:  player.AddCoreHeat(Constants::kLavaHeat);  break;
+    case TileType::kAsh:   player.AddCoreHeat(-Constants::kAshCool);  break;
+    case TileType::kIce:   player.AddCoreHeat(-Constants::kIceCool);  break;
+    default: break;
+  }
+
   CheckCoreOverheat(player);
   if (game_over_) return;
 
@@ -111,8 +122,12 @@ void TurnSystem::ProcessPlayerAction(Action action, Player& player,
 
   if (tile_ok && !enemy_on_tile) {
     player.Move(dx, dy);
-    // Проверка выхода
-    if (room.GetTile(new_x, new_y).GetType() == TileType::kExit) {
+    TileType stepped = room.GetTile(new_x, new_y).GetType();
+    if (stepped == TileType::kKey) {
+      player.PickUpKey();
+      room.GetTile(new_x, new_y).SetType(TileType::kFloor);
+    } else if (stepped == TileType::kExit && player.HasKey()) {
+      player.ConsumeKey();
       reached_exit_ = true;
     }
     if (room.HasItemAt(new_x, new_y)) {
@@ -136,6 +151,13 @@ void TurnSystem::CheckCoreOverheat(Player& player) {
     player.TakeDamage(player.GetMaxHealth());
     game_over_ = true;
   }
+}
+
+void TurnSystem::Reset() {
+  turn_count_ = 0;
+  current_timer_ = timer_limit_;
+  game_over_ = false;
+  reached_exit_ = false;
 }
 
 bool TurnSystem::IsTimeOut() const { return current_timer_ <= 0; }

@@ -23,6 +23,10 @@ void Enemy::TakeDamage(int dmg) {
 
 void Enemy::Act(Player& player, Room& room) {
   if (state_ == EnemyState::kDead) return;
+  if (enemy_id_ == "devil") {
+    BossAct(player, room);
+    return;
+  }
   UpdateState(player, room);
   switch (state_) {
     case EnemyState::kPatrolling:
@@ -36,6 +40,33 @@ void Enemy::Act(Player& player, Room& room) {
       break;
     default:
       break;
+  }
+}
+
+void Enemy::BossAct(Player& player, Room& room) {
+  // Переход в фазу 2 при <= 50% HP
+  if (!enraged_ && health_ <= max_health_ / 2) {
+    enraged_ = true;
+  }
+
+  // Босс всегда видит игрока — нет patrol
+  int dist = GetDistanceTo(player.GetX(), player.GetY());
+  if (dist <= attack_range_) {
+    AttackPlayer(player);
+    if (enraged_) {
+      // Фаза 2: вторая атака + AoE тепло на все соседние клетки
+      AttackPlayer(player);
+      int px = player.GetX(), py = player.GetY();
+      for (int dx = -1; dx <= 1; dx++) {
+        for (int dy = -1; dy <= 1; dy++) {
+          if (dx == 0 && dy == 0) continue;
+          if (px + dx == player.GetX() && py + dy == player.GetY())
+            player.AddCoreHeat(heat_damage_);
+        }
+      }
+    }
+  } else {
+    ChasePlayer(player, room);
   }
 }
 
@@ -131,3 +162,4 @@ int Enemy::GetHeatDamage() const { return heat_damage_; }
 int Enemy::GetAttackRange() const { return attack_range_; }
 EnemyState Enemy::GetState() const { return state_; }
 const std::string& Enemy::GetEnemyId() const { return enemy_id_; }
+bool Enemy::IsEnraged() const { return enraged_; }

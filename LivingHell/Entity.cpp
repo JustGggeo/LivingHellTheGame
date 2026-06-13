@@ -21,3 +21,4 @@ int Entity::GetMaxHealth() const { return max_health_; }
 int Entity::GetX() const { return x_; }
 int Entity::GetY() const { return y_; }
 bool Entity::IsAlive() const { return health_ > 0; }
+void Entity::Teleport(int x, int y) { x_ = x; y_ = y; }

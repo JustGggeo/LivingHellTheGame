@@ -7,6 +7,7 @@ class Entity {
 
   virtual void TakeDamage(int dmg);
   virtual bool Move(int dx, int dy);
+  void Teleport(int x, int y);
 
   int GetHealth() const;
   int GetMaxHealth() const;

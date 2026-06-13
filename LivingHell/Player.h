@@ -14,6 +14,7 @@ class Player : public Entity {
   Player(int x, int y, const GameDatabase& db);
 
   Inventory& GetInventory();
+  const Inventory& GetInventory() const;
 
   void TakeDamage(int dmg) override;
   bool Move(int dx, int dy) override;
@@ -35,6 +36,10 @@ class Player : public Entity {
   void TickAbilities();
   const std::vector<std::unique_ptr<Ability>>& GetAbilities() const;
 
+  bool HasKey() const;
+  void PickUpKey();
+  void ConsumeKey();
+
   bool HasEmissionBuff() const;
   void SetEmissionBuff(bool val);
   void ClearEmissionBuff();
@@ -50,6 +55,7 @@ class Player : public Entity {
  private:
   const GameDatabase* db_ = nullptr;
   bool emission_buff_ = false;
+  bool has_key_ = false;
   int attack_damage_bonus_ = 0;
   int attack_range_bonus_ = 0;
   int core_heat_;

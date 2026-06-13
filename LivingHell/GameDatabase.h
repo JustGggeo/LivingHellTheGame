@@ -25,6 +25,7 @@ struct ItemData {
   std::string type;
   int slots_required = 0;
   float effect_value = 0.f;
+  float effect_value2 = 0.f;
   std::string effect_type;
 };
 

@@ -5,7 +5,6 @@
 #include <ctime>
 
 #include "Constants.h"
-#include "Consumable.h"
 #include "DroppableChest.h"
 #include "Renderer.h"
 
@@ -17,6 +16,7 @@ GameState::GameState()
       status_(GameStatus::kPlaying) {
   srand(static_cast<unsigned int>(time(nullptr)));
   Init("enemies.csv", "items.csv", "rooms.csv", "playerstats.csv");
+  transition_ = {true, TransitionPhase::kHold, 255.f, 1};
   player_.AddAbilityObserver(&ability_logger_);
   level_generator_.Generate(current_circle_, database_);
   current_room_ = std::make_unique<Room>(
@@ -36,7 +36,7 @@ void GameState::Init(const std::string& enemies_path,
 }
 
 void GameState::ProcessAction(Action action) {
-  if (status_ != GameStatus::kPlaying) return;
+  if (status_ != GameStatus::kPlaying || transition_.active) return;
   turn_system_.ProcessTurn(action, player_, *current_room_);
   CheckStatus();
 }
@@ -49,11 +49,13 @@ void GameState::CheckStatus() {
     return;
   }
   if (turn_system_.PlayerReachedExit()) {
-    status_ = GameStatus::kVictory;
+    if (current_circle_ < 3) {
+      transition_ = {true, TransitionPhase::kFadeOut, 0.f, current_circle_ + 1};
+      pending_next_level_ = true;
+    } else {
+      status_ = GameStatus::kVictory;
+    }
     return;
-  }
-  if (current_room_->IsCleared() && current_circle_ >= 3) {
-    status_ = GameStatus::kVictory;
   }
 }
 
@@ -72,44 +74,65 @@ int GameState::GetCurrentTimer() const {
 }
 
 void GameState::SpawnEnemies() {
-  for (const auto& data : database_.GetAllEnemies()) {
-    if (data.circle != current_circle_) continue;
-
-    int x = 0, y = 0;
-    bool found = false;
-    for (int attempt = 0; attempt < Constants::kMaxSpawnAttempts; attempt++) {
-      x = Constants::kSpawnMargin +
-          rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
-      y = Constants::kSpawnMargin +
-          rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
-      if (current_room_->GetTile(x, y).IsWalkable() &&
-          !(x == player_.GetX() && y == player_.GetY())) {
-        found = true;
-        break;
-      }
-    }
-    if (!found) continue;
-
-    auto enemy = std::make_unique<Enemy>(
-        x, y, data.health, data.damage, data.attack_range, data.move_speed,
-        data.heat_damage, data.exp_reward, data.id);
-    current_room_->AddEnemy(std::move(enemy));
-
-    int soul_count = Constants::kSoulAshurnCount +
-                     rand() % Constants::kSoulSpawnVariation;
-    for (int i = 0; i < soul_count; i++) {
-      bool found = false;
+  // Босс спавнится ровно 1 раз на круге 3
+  if (current_circle_ == 3) {
+    const EnemyData* boss = database_.GetEnemyData("devil");
+    if (boss) {
       for (int attempt = 0; attempt < Constants::kMaxSpawnAttempts; attempt++) {
         int x = Constants::kSpawnMargin +
                 rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
         int y = Constants::kSpawnMargin +
                 rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
-        if (current_room_->GetTile(x, y).IsWalkable() &&
-            !(x == player_.GetX() && y == player_.GetY())) {
-          current_room_->AddDestructible(std::make_unique<SoulAshurn>(x, y));
-          found = true;
+        if (IsTileFree(x, y)) {
+          current_room_->AddEnemy(std::make_unique<Enemy>(
+              x, y, boss->health, boss->damage, boss->attack_range,
+              boss->move_speed, boss->heat_damage, boss->exp_reward, boss->id));
           break;
         }
+      }
+    }
+  }
+
+  // Обычные враги: пул без босса, разброс растёт с кругом
+  std::vector<const EnemyData*> pool;
+  for (const auto& data : database_.GetAllEnemies()) {
+    if (data.circle <= current_circle_ && data.id != "devil")
+      pool.push_back(&data);
+  }
+  if (pool.empty()) return;
+
+  const RoomData* room_data = database_.GetRoomData("combat");
+  int min_enemies = room_data ? room_data->min_enemies : 2;
+  int count = min_enemies + rand() % current_circle_;
+
+  for (int i = 0; i < count; i++) {
+    const EnemyData& data = *pool[rand() % pool.size()];
+    for (int attempt = 0; attempt < Constants::kMaxSpawnAttempts; attempt++) {
+      int x = Constants::kSpawnMargin +
+               rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
+      int y = Constants::kSpawnMargin +
+               rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
+      if (IsTileFree(x, y)) {
+        current_room_->AddEnemy(std::make_unique<Enemy>(
+            x, y, data.health, data.damage, data.attack_range, data.move_speed,
+            data.heat_damage, data.exp_reward, data.id));
+        break;
+      }
+    }
+  }
+
+  // Урны с душами
+  int soul_count =
+      Constants::kSoulAshurnCount + rand() % Constants::kSoulSpawnVariation;
+  for (int i = 0; i < soul_count; i++) {
+    for (int attempt = 0; attempt < Constants::kMaxSpawnAttempts; attempt++) {
+      int x = Constants::kSpawnMargin +
+               rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
+      int y = Constants::kSpawnMargin +
+               rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
+      if (IsTileFree(x, y)) {
+        current_room_->AddDestructible(std::make_unique<SoulAshurn>(x, y));
+        break;
       }
     }
   }
@@ -130,7 +153,7 @@ void GameState::ApplyGeneratedRooms() {
 
   const RoomPlacement* start = level_generator_.GetStartRoom();
   if (start) {
-    player_ = Player(start->x + 1, start->y + 1, database_);
+    player_.Teleport(start->x + 1, start->y + 1);
   }
 
   for (int i = 1; i < static_cast<int>(placements.size()); i++) {
@@ -162,27 +185,62 @@ void GameState::ApplyGeneratedRooms() {
           placed = true;
         }
   }
-  // Спавним сундук в случайной проходимой клетке
-  bool chest_placed = false;
-  for (int attempt = 0; attempt < Constants::kMaxSpawnAttempts && !chest_placed;
-       attempt++) {
+  // Спавним специальные тайлы
+  std::vector<TileType> special_pool = {TileType::kAsh};
+  if (current_circle_ >= 2) special_pool.push_back(TileType::kMagma);
+  if (current_circle_ >= 2) special_pool.push_back(TileType::kIce);
+  if (current_circle_ >= 3) special_pool.push_back(TileType::kLava);
+
+  for (int i = 0; i < Constants::kSpecialTileCount; i++) {
+    for (int attempt = 0; attempt < Constants::kMaxSpawnAttempts; attempt++) {
+      int x = Constants::kSpawnMargin +
+               rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
+      int y = Constants::kSpawnMargin +
+               rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
+      if (current_room_->GetTile(x, y).GetType() == TileType::kFloor) {
+        TileType t = special_pool[rand() % special_pool.size()];
+        current_room_->GetTile(x, y).SetType(t);
+        break;
+      }
+    }
+  }
+
+  // Спавним ключ в случайной проходимой клетке
+  for (int attempt = 0; attempt < Constants::kMaxSpawnAttempts; attempt++) {
     int x = Constants::kSpawnMargin +
             rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
     int y = Constants::kSpawnMargin +
             rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
-    if (current_room_->GetTile(x, y).IsWalkable()) {
-      auto chest = std::make_unique<DroppableChest>(
-          x, y,
-          std::make_unique<Consumable>("khladagent", "Хладагент",
-                                       EffectType::kCool, 4));
-      current_room_->AddDestructible(std::move(chest));
-      chest_placed = true;
+    if (current_room_->GetTile(x, y).GetType() == TileType::kFloor) {
+      current_room_->GetTile(x, y).SetType(TileType::kKey);
+      break;
+    }
+  }
+
+  // Спавним сундук в случайной проходимой клетке
+  for (int attempt = 0; attempt < Constants::kMaxSpawnAttempts; attempt++) {
+    int x = Constants::kSpawnMargin +
+            rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
+    int y = Constants::kSpawnMargin +
+            rand() % (Constants::kFieldSize - Constants::kSpawnMargin * 2);
+    if (IsTileFree(x, y)) {
+      current_room_->AddDestructible(
+          std::make_unique<DroppableChest>(x, y, CreateRandomItem()));
+      break;
     }
   }
 }
 
 bool GameState::HandleInput(const sf::Event::KeyPressed& key) {
   if (key.code == sf::Keyboard::Key::Escape) return true;
+  if (key.code == sf::Keyboard::Key::Tab) {
+    Inventory& inv = player_.GetInventory();
+    if (inv.GetItemCount() > 0) {
+      int next = (inv.GetActiveIndex() + 1) % inv.GetItemCount();
+      inv.SetActiveIndex(next);
+    }
+    return false;
+  }
   if (status_ != GameStatus::kPlaying) return false;
 
   Action action = Action::kWait;
@@ -238,14 +296,93 @@ bool GameState::HandleInput(const sf::Event::KeyPressed& key) {
 
 void GameState::Run(sf::RenderWindow& window) {
   Renderer renderer(window, "cour.ttf");
+  const float kFadeSpeed = 6.f;   // единиц alpha за фрейм
+  const float kHoldFrames = 60.f; // кол-во фреймов задержки
+  float hold_timer = 0.f;
+
   while (window.isOpen()) {
     while (const std::optional event = window.pollEvent()) {
       if (event->is<sf::Event::Closed>()) window.close();
       if (const auto* key = event->getIf<sf::Event::KeyPressed>())
-        if (HandleInput(*key)) window.close();
+        if (!transition_.active && HandleInput(*key)) window.close();
     }
+
     window.clear(sf::Color(20, 20, 20));
     renderer.Draw(*this);
+
+    if (transition_.active) {
+      if (transition_.phase == TransitionPhase::kFadeOut) {
+        transition_.alpha += kFadeSpeed;
+        if (transition_.alpha >= 255.f) {
+          transition_.alpha = 255.f;
+          transition_.phase = TransitionPhase::kHold;
+          hold_timer = 0.f;
+        }
+      } else if (transition_.phase == TransitionPhase::kHold) {
+        if (hold_timer == 0.f && pending_next_level_) {
+          NextLevel();
+          pending_next_level_ = false;
+        }
+        hold_timer++;
+        if (hold_timer >= kHoldFrames)
+          transition_.phase = TransitionPhase::kFadeIn;
+      } else {
+        transition_.alpha -= kFadeSpeed;
+        if (transition_.alpha <= 0.f) {
+          transition_.alpha = 0.f;
+          transition_.active = false;
+        }
+      }
+      renderer.DrawTransition(static_cast<int>(transition_.alpha),
+                              transition_.target_circle);
+    }
+
     window.display();
   }
 }
+
+bool GameState::IsTileFree(int x, int y) const {
+  if (x == player_.GetX() && y == player_.GetY()) return false;
+  const Tile& tile = current_room_->GetTile(x, y);
+  if (tile.GetType() != TileType::kFloor) return false;
+  for (const auto& e : current_room_->GetEnemies())
+    if (e->IsAlive() && e->GetX() == x && e->GetY() == y) return false;
+  for (const auto& d : current_room_->GetDestructibles())
+    if (d->IsAlive() && d->GetX() == x && d->GetY() == y) return false;
+  if (current_room_->HasItemAt(x, y)) return false;
+  return true;
+}
+
+std::unique_ptr<Item> GameState::CreateRandomItem() {
+  const auto& items = database_.GetAllItems();
+  if (items.empty()) return nullptr;
+  const ItemData& data = items[rand() % items.size()];
+
+  if (data.type == "Weapon") {
+    return std::make_unique<Weapon>(data.id, data.name,
+                                    0,
+                                    static_cast<int>(data.effect_value2),
+                                    static_cast<int>(data.effect_value),
+                                    0.f);
+  }
+
+  EffectType effect = EffectType::kCool;
+  if (data.effect_type == "Heat")     effect = EffectType::kHeat;
+  else if (data.effect_type == "Heal")    effect = EffectType::kHeal;
+  else if (data.effect_type == "Empower") effect = EffectType::kEmpower;
+
+  return std::make_unique<Consumable>(data.id, data.name, effect,
+                                      static_cast<int>(data.effect_value));
+}
+
+void GameState::NextLevel() {
+  current_circle_++;
+  current_room_ = std::make_unique<Room>(
+      Constants::kFieldSize, Constants::kFieldSize, RoomType::kCombat);
+  turn_system_.Reset();
+  level_generator_.Generate(current_circle_, database_);
+  ApplyGeneratedRooms();
+  SpawnEnemies();
+}
+
+const LevelTransition& GameState::GetTransition() const { return transition_; }

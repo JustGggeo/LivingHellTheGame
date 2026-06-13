@@ -22,6 +22,7 @@ class Enemy : public Entity {
   int GetAttackRange() const;
   EnemyState GetState() const;
   const std::string& GetEnemyId() const;
+  bool IsEnraged() const;
 
  private:
   std::string enemy_id_;
@@ -32,11 +33,14 @@ class Enemy : public Entity {
   int exp_reward_;
   EnemyState state_;
 
-  void UpdateState(Player& player);
+  void UpdateState(Player& player, Room& room);
+
   void Patrol();
   void ChasePlayer(Player& player, Room& room);
   void AttackPlayer(Player& player);
+  void BossAct(Player& player, Room& room);
   int GetDistanceTo(int target_x, int target_y) const;
-  void UpdateState(Player& player, Room& room);
   bool HasLineOfSight(int target_x, int target_y, Room& room) const;
+
+  bool enraged_ = false;
 };

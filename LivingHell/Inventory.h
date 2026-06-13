@@ -21,6 +21,7 @@ class Inventory {
 
   int GetMaxSlots() const;
   int GetUsedSlots() const;
+  int GetItemCount() const;
   int GetActiveIndex() const;
   bool IsFull() const;
 

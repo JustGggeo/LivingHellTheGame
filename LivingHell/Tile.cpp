@@ -11,5 +11,7 @@ int Tile::GetY() const { return y_; }
 
 bool Tile::IsWalkable() const {
   return type_ == TileType::kFloor || type_ == TileType::kDoor ||
-         type_ == TileType::kExit;
+         type_ == TileType::kExit || type_ == TileType::kKey ||
+         type_ == TileType::kMagma || type_ == TileType::kLava ||
+         type_ == TileType::kAsh || type_ == TileType::kIce;
 }

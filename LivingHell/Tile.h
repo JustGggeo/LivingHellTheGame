@@ -1,6 +1,6 @@
 #pragma once
 
-enum class TileType { kFloor, kWall, kDoor, kExit };
+enum class TileType { kFloor, kWall, kDoor, kExit, kKey, kMagma, kLava, kAsh, kIce };
 
 class Tile {
  public:

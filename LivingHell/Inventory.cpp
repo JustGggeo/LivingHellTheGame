@@ -40,5 +40,6 @@ void Inventory::SetActiveIndex(int index) {
 
 int Inventory::GetMaxSlots() const { return max_slots_; }
 int Inventory::GetUsedSlots() const { return used_slots_; }
+int Inventory::GetItemCount() const { return static_cast<int>(items_.size()); }
 int Inventory::GetActiveIndex() const { return active_index_; }
 bool Inventory::IsFull() const { return used_slots_ >= max_slots_; }
