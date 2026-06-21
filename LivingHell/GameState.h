@@ -32,7 +32,7 @@ class GameState {
   void Init(const std::string& enemies_path, const std::string& items_path,
             const std::string& rooms_path, const std::string& playerstats_path);
   void ProcessAction(Action action);
-  void Run(sf::RenderWindow& window);
+  bool Run(sf::RenderWindow& window);
   void NextLevel();
 
   Player& GetPlayer();
@@ -63,6 +63,7 @@ class GameState {
 
   LevelTransition transition_;
   bool pending_next_level_ = false;
+  bool restart_requested_ = false;
 
   // Observer для системы абилок
   AbilityLogger ability_logger_;

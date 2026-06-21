@@ -288,7 +288,7 @@ bool GameState::HandleInput(const sf::Event::KeyPressed& key) {
   return false;
 }
 
-void GameState::Run(sf::RenderWindow& window) {
+bool GameState::Run(sf::RenderWindow& window) {
   Renderer renderer(window, "cour.ttf");
   const float kFadeSpeed = 6.f;   // единиц alpha за фрейм
   const float kHoldFrames = 60.f; // кол-во фреймов задержки
@@ -297,9 +297,21 @@ void GameState::Run(sf::RenderWindow& window) {
   while (window.isOpen()) {
     while (const std::optional event = window.pollEvent()) {
       if (event->is<sf::Event::Closed>()) window.close();
-      if (const auto* key = event->getIf<sf::Event::KeyPressed>())
-        if (!transition_.active && HandleInput(*key)) window.close();
+      if (const auto* resized = event->getIf<sf::Event::Resized>()) {
+        window.setView(sf::View(sf::FloatRect(
+            {0.f, 0.f}, {static_cast<float>(resized->size.x),
+                        static_cast<float>(resized->size.y)})));
+      }
+      if (const auto* key = event->getIf<sf::Event::KeyPressed>()) {
+        if (status_ != GameStatus::kPlaying &&
+            key->code == sf::Keyboard::Key::R) {
+          restart_requested_ = true;
+        } else if (!transition_.active && HandleInput(*key)) {
+          window.close();
+        }
+      }
     }
+    if (restart_requested_) break;
 
     window.clear(sf::Color(20, 20, 20));
     renderer.Draw(*this);
@@ -333,6 +345,7 @@ void GameState::Run(sf::RenderWindow& window) {
 
     window.display();
   }
+  return restart_requested_;
 }
 
 bool GameState::IsTileFree(int x, int y) const {

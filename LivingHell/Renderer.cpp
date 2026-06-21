@@ -1,5 +1,6 @@
 #include "Renderer.h"
 
+#include <algorithm>
 #include <cmath>
 
 #include "DroppableChest.h"
@@ -11,7 +12,16 @@ Renderer::Renderer(sf::RenderWindow& window, const std::string& font_path)
   font_.openFromFile(font_path);
 }
 
+void Renderer::UpdateScale() {
+  sf::Vector2u size = window_.getSize();
+  scale_ = std::min(static_cast<float>(size.x) / kBaseWidth,
+                    static_cast<float>(size.y) / kBaseHeight);
+  offset_x_ = (static_cast<float>(size.x) - kBaseWidth * scale_) / 2.f;
+  offset_y_ = (static_cast<float>(size.y) - kBaseHeight * scale_) / 2.f;
+}
+
 void Renderer::Draw(GameState& game) {
+  UpdateScale();
   DrawRoom(game.GetCurrentRoom());
   DrawChests(game.GetCurrentRoom());
   DrawFloorItems(game.GetCurrentRoom());
@@ -170,11 +180,13 @@ void Renderer::DrawUI(GameState& game) {
   window_.draw(MakeText("TIME: " + std::to_string(game.GetCurrentTimer()), ui_x,
                         120.f, sf::Color(100, 200, 255), 14));
 
-  if (game.GetStatus() == GameStatus::kDefeat)
+  if (game.GetStatus() == GameStatus::kDefeat) {
     window_.draw(MakeText("GAME OVER", ui_x, abl + 8.f, sf::Color::Red, 18));
-  else if (game.GetStatus() == GameStatus::kVictory) {
+    window_.draw(MakeText("[R] Restart", ui_x, abl + 30.f, sf::Color(150, 80, 80), 13));
+  } else if (game.GetStatus() == GameStatus::kVictory) {
     window_.draw(MakeText("CORE DESTROYED", ui_x, abl + 8.f, sf::Color(255, 80, 0), 18));
     window_.draw(MakeText("The Hell is collapsing...", ui_x, abl + 30.f, sf::Color(200, 60, 0), 13));
+    window_.draw(MakeText("[R] Restart", ui_x, abl + 48.f, sf::Color(150, 80, 80), 13));
   }
 
   if (p.HasKey()) {
@@ -212,8 +224,10 @@ void Renderer::DrawUI(GameState& game) {
 
 sf::Text Renderer::MakeText(const std::string& str, float x, float y,
                             sf::Color color, int size) {
-  sf::Text text(font_, str, size);
-  text.setPosition({x, y});
+  unsigned scaled_size = std::max(1u, static_cast<unsigned>(
+                                          std::round(size * scale_)));
+  sf::Text text(font_, str, scaled_size);
+  text.setPosition({offset_x_ + x * scale_, offset_y_ + y * scale_});
   text.setFillColor(color);
   return text;
 }

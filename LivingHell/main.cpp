@@ -9,7 +9,11 @@ int main() {
                      static_cast<unsigned>(Constants::kWindowHeight)}),
       "Living Hell");
   window.setFramerateLimit(Constants::kFramerateLimit);
-  GameState game;
-  game.Run(window);
+
+  bool restart = true;
+  while (restart) {
+    GameState game;
+    restart = game.Run(window);
+  }
   return 0;
 }
