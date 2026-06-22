@@ -1,3 +1,27 @@
-﻿  Renderer.cpp
-C:\Users\JustGeo\source\repos\LivingHell\LivingHell\Renderer.cpp(11,21): warning C4834: discarding return value of function with [[nodiscard]] attribute
+﻿  Abilities.cpp
+  AbilityLogger.cpp
+  Ability.cpp
+  Chest.cpp
+  Consumable.cpp
+  Destructible.cpp
+  DroppableChest.cpp
+  Enemy.cpp
+  Entity.cpp
+  GameDatabase.cpp
+  GameState.cpp
+  Inventory.cpp
+  Item.cpp
+  LevelGenerator.cpp
+  main.cpp
+  Player.cpp
+  Renderer.cpp
+C:\Users\JustGeo\source\repos\LivingHell\LivingHell\Renderer.cpp(12,21): warning C4834: discarding return value of function with [[nodiscard]] attribute
+  Room.cpp
+  HeatPurge.cpp
+  Tile.cpp
+  Generating Code...
+  Compiling...
+  TurnSystem.cpp
+  Weapon.cpp
+  Generating Code...
   LivingHell.vcxproj -> C:\Users\JustGeo\source\repos\LivingHell\x64\Debug\LivingHell.exe
