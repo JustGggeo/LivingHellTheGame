@@ -38,6 +38,12 @@ void Inventory::SetActiveIndex(int index) {
     active_index_ = index;
 }
 
+void Inventory::Clear() {
+  items_.clear();
+  used_slots_ = 0;
+  active_index_ = 0;
+}
+
 int Inventory::GetMaxSlots() const { return max_slots_; }
 int Inventory::GetUsedSlots() const { return used_slots_; }
 int Inventory::GetItemCount() const { return static_cast<int>(items_.size()); }

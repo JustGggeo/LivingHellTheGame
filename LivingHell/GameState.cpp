@@ -24,6 +24,7 @@ GameState::GameState()
   ApplyGeneratedRooms();
   SpawnEnemies();
   player_.SnapshotProgress();
+  SnapshotInventory();
 }
 
 void GameState::Init(const std::string& enemies_path,
@@ -369,19 +370,7 @@ bool GameState::IsTileFree(int x, int y) const {
   return true;
 }
 
-std::unique_ptr<Item> GameState::CreateRandomItem() {
-  std::vector<const ItemData*> pool;
-  for (const auto& data : database_.GetAllItems()) {
-    bool used = false;
-    for (const auto& id : used_item_ids_)
-      if (id == data.id) { used = true; break; }
-    if (!used) pool.push_back(&data);
-  }
-  if (pool.empty()) return nullptr;
-
-  const ItemData& data = *pool[rand() % pool.size()];
-  used_item_ids_.push_back(data.id);
-
+std::unique_ptr<Item> GameState::CreateItemFromData(const ItemData& data) {
   if (data.type == "Weapon") {
     return std::make_unique<Weapon>(data.id, data.name,
                                     0,
@@ -399,6 +388,39 @@ std::unique_ptr<Item> GameState::CreateRandomItem() {
                                       static_cast<int>(data.effect_value));
 }
 
+std::unique_ptr<Item> GameState::CreateRandomItem() {
+  std::vector<const ItemData*> pool;
+  for (const auto& data : database_.GetAllItems()) {
+    bool used = false;
+    for (const auto& id : used_item_ids_)
+      if (id == data.id) { used = true; break; }
+    if (!used) pool.push_back(&data);
+  }
+  if (pool.empty()) return nullptr;
+
+  const ItemData& data = *pool[rand() % pool.size()];
+  used_item_ids_.push_back(data.id);
+  return CreateItemFromData(data);
+}
+
+void GameState::SnapshotInventory() {
+  inventory_snapshot_ids_.clear();
+  const Inventory& inv = player_.GetInventory();
+  for (int i = 0; i < inv.GetItemCount(); i++) {
+    Item* item = inv.GetItem(i);
+    if (item) inventory_snapshot_ids_.push_back(item->GetItemId());
+  }
+}
+
+void GameState::RestoreInventory() {
+  Inventory& inv = player_.GetInventory();
+  inv.Clear();
+  for (const auto& id : inventory_snapshot_ids_) {
+    const ItemData* data = database_.GetItemData(id);
+    if (data) inv.AddItem(CreateItemFromData(*data));
+  }
+}
+
 void GameState::NextLevel() {
   current_circle_++;
   current_room_ = std::make_unique<Room>(
@@ -408,6 +430,7 @@ void GameState::NextLevel() {
   ApplyGeneratedRooms();
   SpawnEnemies();
   player_.SnapshotProgress();
+  SnapshotInventory();
 }
 
 void GameState::RestartLevel() {
@@ -415,6 +438,7 @@ void GameState::RestartLevel() {
       Constants::kFieldSize, Constants::kFieldSize, RoomType::kCombat);
   turn_system_.Reset();
   player_.RestoreProgress();
+  RestoreInventory();
   status_ = GameStatus::kPlaying;
   level_generator_.Generate(current_circle_, database_);
   ApplyGeneratedRooms();

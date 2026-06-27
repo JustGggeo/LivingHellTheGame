@@ -13,6 +13,7 @@ class Inventory {
 
   bool AddItem(std::unique_ptr<Item> item);
   void RemoveItem(int index);
+  void Clear();
   bool UseItem(int index, Player& player);
 
   Item* GetItem(int index) const;

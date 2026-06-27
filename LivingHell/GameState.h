@@ -60,6 +60,9 @@ class GameState {
   void SpawnEnemies();
   void ApplyGeneratedRooms();
   std::unique_ptr<Item> CreateRandomItem();
+  std::unique_ptr<Item> CreateItemFromData(const ItemData& data);
+  void SnapshotInventory();
+  void RestoreInventory();
   bool IsTileFree(int x, int y) const;
 
   LevelTransition transition_;
@@ -67,6 +70,7 @@ class GameState {
   bool pending_restart_level_ = false;
   bool restart_requested_ = false;
   std::vector<std::string> used_item_ids_;
+  std::vector<std::string> inventory_snapshot_ids_;
 
   // Observer для системы абилок
   AbilityLogger ability_logger_;
