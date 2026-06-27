@@ -56,6 +56,7 @@ class GameState {
 
   void CheckStatus();
   void LoadNextRoom();
+  void RestartLevel();
   void SpawnEnemies();
   void ApplyGeneratedRooms();
   std::unique_ptr<Item> CreateRandomItem();
@@ -63,7 +64,9 @@ class GameState {
 
   LevelTransition transition_;
   bool pending_next_level_ = false;
+  bool pending_restart_level_ = false;
   bool restart_requested_ = false;
+  std::vector<std::string> used_item_ids_;
 
   // Observer для системы абилок
   AbilityLogger ability_logger_;

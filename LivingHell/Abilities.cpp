@@ -35,6 +35,7 @@ void BasicAttack::Activate(Player& player, Room& room) {
 
   if (player.HasEmissionBuff()) {
     dmg += player.GetCoreHeat();
+    player.AddCoreHeat(-player.GetCoreHeat());
     player.ClearEmissionBuff();
   }
 

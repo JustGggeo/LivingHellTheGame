@@ -21,6 +21,9 @@ class Player : public Entity {
 
   void GainExp(int amount);
   void LevelUp();
+  void FullRestore();
+  void SnapshotProgress();
+  void RestoreProgress();
   void AddCoreHeat(int amount);
   bool UseItem(int index);
 
@@ -63,6 +66,9 @@ class Player : public Entity {
   int level_;
   int exp_;
   int attack_range_;
+  int snapshot_level_ = 1;
+  int snapshot_exp_ = 0;
+  size_t snapshot_ability_count_ = 1;
   Inventory inventory_;
   std::vector<std::unique_ptr<Ability>> abilities_;
 

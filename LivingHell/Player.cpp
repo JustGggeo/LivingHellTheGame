@@ -96,6 +96,27 @@ bool Player::Move(int dx, int dy) {
   return true;
 }
 
+void Player::FullRestore() {
+  health_ = max_health_;
+  core_heat_ = 0;
+  has_key_ = false;
+}
+
+void Player::SnapshotProgress() {
+  snapshot_level_ = level_;
+  snapshot_exp_ = exp_;
+  snapshot_ability_count_ = abilities_.size();
+}
+
+void Player::RestoreProgress() {
+  level_ = snapshot_level_;
+  exp_ = snapshot_exp_;
+  if (abilities_.size() > snapshot_ability_count_)
+    abilities_.resize(snapshot_ability_count_);
+  UpdateStatsForLevel();
+  FullRestore();
+}
+
 void Player::AddCoreHeat(int amount) {
   core_heat_ += amount;
   if (core_heat_ > max_core_heat_) core_heat_ = max_core_heat_;

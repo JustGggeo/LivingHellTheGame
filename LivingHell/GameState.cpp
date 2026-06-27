@@ -23,6 +23,7 @@ GameState::GameState()
       Constants::kFieldSize, Constants::kFieldSize, RoomType::kCombat);
   ApplyGeneratedRooms();
   SpawnEnemies();
+  player_.SnapshotProgress();
 }
 
 void GameState::Init(const std::string& enemies_path,
@@ -303,8 +304,13 @@ bool GameState::Run(sf::RenderWindow& window) {
                         static_cast<float>(resized->size.y)})));
       }
       if (const auto* key = event->getIf<sf::Event::KeyPressed>()) {
-        if (status_ != GameStatus::kPlaying &&
+        if (status_ == GameStatus::kDefeat &&
             key->code == sf::Keyboard::Key::R) {
+          transition_ = {true, TransitionPhase::kFadeOut, 0.f,
+                        current_circle_};
+          pending_restart_level_ = true;
+        } else if (status_ == GameStatus::kVictory &&
+                  key->code == sf::Keyboard::Key::R) {
           restart_requested_ = true;
         } else if (!transition_.active && HandleInput(*key)) {
           window.close();
@@ -328,6 +334,9 @@ bool GameState::Run(sf::RenderWindow& window) {
         if (hold_timer == 0.f && pending_next_level_) {
           NextLevel();
           pending_next_level_ = false;
+        } else if (hold_timer == 0.f && pending_restart_level_) {
+          RestartLevel();
+          pending_restart_level_ = false;
         }
         hold_timer++;
         if (hold_timer >= kHoldFrames)
@@ -361,9 +370,17 @@ bool GameState::IsTileFree(int x, int y) const {
 }
 
 std::unique_ptr<Item> GameState::CreateRandomItem() {
-  const auto& items = database_.GetAllItems();
-  if (items.empty()) return nullptr;
-  const ItemData& data = items[rand() % items.size()];
+  std::vector<const ItemData*> pool;
+  for (const auto& data : database_.GetAllItems()) {
+    bool used = false;
+    for (const auto& id : used_item_ids_)
+      if (id == data.id) { used = true; break; }
+    if (!used) pool.push_back(&data);
+  }
+  if (pool.empty()) return nullptr;
+
+  const ItemData& data = *pool[rand() % pool.size()];
+  used_item_ids_.push_back(data.id);
 
   if (data.type == "Weapon") {
     return std::make_unique<Weapon>(data.id, data.name,
@@ -387,6 +404,18 @@ void GameState::NextLevel() {
   current_room_ = std::make_unique<Room>(
       Constants::kFieldSize, Constants::kFieldSize, RoomType::kCombat);
   turn_system_.Reset();
+  level_generator_.Generate(current_circle_, database_);
+  ApplyGeneratedRooms();
+  SpawnEnemies();
+  player_.SnapshotProgress();
+}
+
+void GameState::RestartLevel() {
+  current_room_ = std::make_unique<Room>(
+      Constants::kFieldSize, Constants::kFieldSize, RoomType::kCombat);
+  turn_system_.Reset();
+  player_.RestoreProgress();
+  status_ = GameStatus::kPlaying;
   level_generator_.Generate(current_circle_, database_);
   ApplyGeneratedRooms();
   SpawnEnemies();
