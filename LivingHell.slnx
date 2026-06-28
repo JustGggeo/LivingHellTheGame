@@ -4,4 +4,5 @@
     <Platform Name="x86" />
   </Configurations>
   <Project Path="LivingHell/LivingHell.vcxproj" Id="0f48c803-bcff-426e-930d-e972347cb46c" />
+  <Project Path="SDL2Test/SDL2Test.vcxproj" Id="6c6a2d7f-9e22-4d5b-8a2b-9b6d2f1a7c10" />
 </Solution>

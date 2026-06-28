@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include <SDL.h>
 #include <memory>
 #include <vector>
 
@@ -32,7 +32,7 @@ class GameState {
   void Init(const std::string& enemies_path, const std::string& items_path,
             const std::string& rooms_path, const std::string& playerstats_path);
   void ProcessAction(Action action);
-  bool Run(sf::RenderWindow& window);
+  bool Run(SDL_Renderer* renderer);
   void NextLevel();
 
   Player& GetPlayer();
@@ -40,7 +40,7 @@ class GameState {
   GameStatus GetStatus() const;
   int GetCurrentCircle() const;
   int GetCurrentTimer() const;
-  bool HandleInput(const sf::Event::KeyPressed& key);
+  bool HandleInput(const SDL_KeyboardEvent& key);
   const LevelTransition& GetTransition() const;
 
  private:

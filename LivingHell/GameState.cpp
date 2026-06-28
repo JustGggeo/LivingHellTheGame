@@ -1,6 +1,5 @@
 #include "GameState.h"
 
-#include <SFML/Graphics.hpp>
 #include <cstdlib>
 #include <ctime>
 
@@ -15,7 +14,8 @@ GameState::GameState()
       current_circle_(1),
       status_(GameStatus::kPlaying) {
   srand(static_cast<unsigned int>(time(nullptr)));
-  Init("enemies.csv", "items.csv", "rooms.csv", "playerstats.csv");
+  Init("data/enemies.csv", "data/items.csv", "data/rooms.csv",
+      "data/playerstats.csv");
   transition_ = {true, TransitionPhase::kHold, 255.f, 1};
   player_.AddAbilityObserver(&ability_logger_);
   level_generator_.Generate(current_circle_, database_);
@@ -227,9 +227,9 @@ void GameState::ApplyGeneratedRooms() {
   }
 }
 
-bool GameState::HandleInput(const sf::Event::KeyPressed& key) {
-  if (key.code == sf::Keyboard::Key::Escape) return true;
-  if (key.code == sf::Keyboard::Key::Tab) {
+bool GameState::HandleInput(const SDL_KeyboardEvent& key) {
+  if (key.keysym.sym == SDLK_ESCAPE) return true;
+  if (key.keysym.sym == SDLK_TAB) {
     Inventory& inv = player_.GetInventory();
     if (inv.GetItemCount() > 0) {
       int next = (inv.GetActiveIndex() + 1) % inv.GetItemCount();
@@ -240,47 +240,47 @@ bool GameState::HandleInput(const sf::Event::KeyPressed& key) {
   if (status_ != GameStatus::kPlaying) return false;
 
   Action action = Action::kWait;
-  switch (key.code) {
-    case sf::Keyboard::Key::W:
+  switch (key.keysym.sym) {
+    case SDLK_w:
       action = Action::kMoveUp;
       break;
-    case sf::Keyboard::Key::S:
+    case SDLK_s:
       action = Action::kMoveDown;
       break;
-    case sf::Keyboard::Key::A:
+    case SDLK_a:
       action = Action::kMoveLeft;
       break;
-    case sf::Keyboard::Key::D:
+    case SDLK_d:
       action = Action::kMoveRight;
       break;
-    case sf::Keyboard::Key::Q:
+    case SDLK_q:
       action = Action::kMoveUpLeft;
       break;
-    case sf::Keyboard::Key::E:
+    case SDLK_e:
       action = Action::kMoveUpRight;
       break;
-    case sf::Keyboard::Key::Z:
+    case SDLK_z:
       action = Action::kMoveDownLeft;
       break;
-    case sf::Keyboard::Key::C:
+    case SDLK_c:
       action = Action::kMoveDownRight;
       break;
-    case sf::Keyboard::Key::X:
+    case SDLK_x:
       action = Action::kUseItem;
       break;
-    case sf::Keyboard::Key::Num1:
+    case SDLK_1:
       action = Action::kUseAbility1;
       break;
-    case sf::Keyboard::Key::Num2:
+    case SDLK_2:
       action = Action::kUseAbility2;
       break;
-    case sf::Keyboard::Key::Num3:
+    case SDLK_3:
       action = Action::kUseAbility3;
       break;
-    case sf::Keyboard::Key::Num4:
+    case SDLK_4:
       action = Action::kUseAbility4;
       break;
-    case sf::Keyboard::Key::Num5:
+    case SDLK_5:
       action = Action::kUseAbility5;
       break;
     default:
@@ -290,37 +290,35 @@ bool GameState::HandleInput(const sf::Event::KeyPressed& key) {
   return false;
 }
 
-bool GameState::Run(sf::RenderWindow& window) {
-  Renderer renderer(window, "cour.ttf");
+bool GameState::Run(SDL_Renderer* sdl_renderer) {
+  Renderer renderer(sdl_renderer, "assets/cour.ttf");
   const float kFadeSpeed = 6.f;   // единиц alpha за фрейм
   const float kHoldFrames = 60.f; // кол-во фреймов задержки
   float hold_timer = 0.f;
 
-  while (window.isOpen()) {
-    while (const std::optional event = window.pollEvent()) {
-      if (event->is<sf::Event::Closed>()) window.close();
-      if (const auto* resized = event->getIf<sf::Event::Resized>()) {
-        window.setView(sf::View(sf::FloatRect(
-            {0.f, 0.f}, {static_cast<float>(resized->size.x),
-                        static_cast<float>(resized->size.y)})));
-      }
-      if (const auto* key = event->getIf<sf::Event::KeyPressed>()) {
-        if (status_ == GameStatus::kDefeat &&
-            key->code == sf::Keyboard::Key::R) {
+  bool window_open = true;
+  while (window_open) {
+    SDL_Event event;
+    while (SDL_PollEvent(&event)) {
+      if (event.type == SDL_QUIT) window_open = false;
+      if (event.type == SDL_KEYDOWN) {
+        const SDL_KeyboardEvent& key = event.key;
+        if (status_ == GameStatus::kDefeat && key.keysym.sym == SDLK_r) {
           transition_ = {true, TransitionPhase::kFadeOut, 0.f,
                         current_circle_};
           pending_restart_level_ = true;
         } else if (status_ == GameStatus::kVictory &&
-                  key->code == sf::Keyboard::Key::R) {
+                  key.keysym.sym == SDLK_r) {
           restart_requested_ = true;
-        } else if (!transition_.active && HandleInput(*key)) {
-          window.close();
+        } else if (!transition_.active && HandleInput(key)) {
+          window_open = false;
         }
       }
     }
     if (restart_requested_) break;
 
-    window.clear(sf::Color(20, 20, 20));
+    SDL_SetRenderDrawColor(sdl_renderer, 20, 20, 20, 255);
+    SDL_RenderClear(sdl_renderer);
     renderer.Draw(*this);
 
     if (transition_.active) {
@@ -353,7 +351,8 @@ bool GameState::Run(sf::RenderWindow& window) {
                               transition_.target_circle);
     }
 
-    window.display();
+    SDL_RenderPresent(sdl_renderer);
+    SDL_Delay(1000 / Constants::kFramerateLimit);
   }
   return restart_requested_;
 }
