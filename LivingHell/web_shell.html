@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <title>Living Hell</title>
+    <style>
+      html, body { margin: 0; background: #141414; overflow: hidden; height: 100%; }
+      #wrap { display: flex; flex-direction: column; align-items: center; }
+      canvas#canvas {
+        border: 0 none;
+        background-color: #000;
+        display: block;
+      }
+      #fsBtn {
+        position: fixed;
+        top: 8px;
+        right: 8px;
+        z-index: 10;
+        padding: 6px 12px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <button id="fsBtn">Fullscreen</button>
+      <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
+    </div>
+    <script type="text/javascript">
+      var canvas = document.getElementById('canvas');
+      var ORIGINAL_W = 800;
+      var ORIGINAL_H = 600;
+
+      function resizeCanvasToDisplaySize() {
+        var dpr = window.devicePixelRatio || 1;
+        var w, h;
+        if (document.fullscreenElement === canvas) {
+          w = window.screen.width;
+          h = window.screen.height;
+        } else {
+          w = ORIGINAL_W;
+          h = ORIGINAL_H;
+        }
+        // Backing-буфер canvas считается в физических пикселях (с учётом
+        // devicePixelRatio), а CSS-размер остаётся в логических — иначе
+        // картинка масштабируется браузером и получается размытой/пиксельной
+        // на Hi-DPI экранах.
+        canvas.width = Math.floor(w * dpr);
+        canvas.height = Math.floor(h * dpr);
+        canvas.style.width = w + "px";
+        canvas.style.height = h + "px";
+        // SDL опрашивает реальный размер canvas каждый кадр (UpdateScale),
+        // поэтому отдельное событие резайза для него не нужно.
+      }
+
+      document.getElementById('fsBtn').addEventListener('click', function () {
+        canvas.requestFullscreen();
+      });
+
+      document.addEventListener('fullscreenchange', resizeCanvasToDisplaySize);
+      resizeCanvasToDisplaySize();
+
+      var Module = {
+        print: function () { console.log.apply(console, arguments); },
+        printErr: function () { console.error.apply(console, arguments); },
+        canvas: canvas,
+      };
+    </script>
+    {{{ SCRIPT }}}
+  </body>
+</html>

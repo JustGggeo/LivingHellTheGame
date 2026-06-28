@@ -1,0 +1,10 @@
+id,name,type,slots_required,effect_value,effect_value2,effect_type
+khladagent,Coolant,Consumable,1,4,0,Cool
+kriogent,Cryogent,Consumable,1,8,0,Cool
+teplogent,Thermite,Consumable,1,4,0,Heat
+pirogent,Pyrogen,Consumable,1,6,0,Heat
+repair_kit,Repair Kit,Consumable,1,4,0,Heal
+ebony_ivory,Ebony & Ivory,Weapon,1,8,0,Empower
+judge,Judge,Weapon,1,2,2,Empower
+pulsar,Pulsar,Weapon,1,4,1,Empower
+energy_beam,Energy Beam,Weapon,1,6,3,Empower

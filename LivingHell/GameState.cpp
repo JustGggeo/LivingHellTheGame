@@ -3,6 +3,10 @@
 #include <cstdlib>
 #include <ctime>
 
+#ifdef __EMSCRIPTEN__
+#include <emscripten.h>
+#endif
+
 #include "Constants.h"
 #include "DroppableChest.h"
 #include "Renderer.h"
@@ -228,7 +232,11 @@ void GameState::ApplyGeneratedRooms() {
 }
 
 bool GameState::HandleInput(const SDL_KeyboardEvent& key) {
+#ifndef __EMSCRIPTEN__
+  // В браузере Escape зарезервирован под выход из fullscreen —
+  // закрытие игры через эту клавишу там не имеет смысла.
   if (key.keysym.sym == SDLK_ESCAPE) return true;
+#endif
   if (key.keysym.sym == SDLK_TAB) {
     Inventory& inv = player_.GetInventory();
     if (inv.GetItemCount() > 0) {
@@ -352,7 +360,11 @@ bool GameState::Run(SDL_Renderer* sdl_renderer) {
     }
 
     SDL_RenderPresent(sdl_renderer);
+#ifdef __EMSCRIPTEN__
+    emscripten_sleep(1000 / Constants::kFramerateLimit);
+#else
     SDL_Delay(1000 / Constants::kFramerateLimit);
+#endif
   }
   return restart_requested_;
 }

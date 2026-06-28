@@ -1,0 +1,9 @@
+room_type,width,height,min_enemies,max_enemies,has_chest,has_key,has_soul_ashurn,spawn_weight_c1,spawn_weight_c2,spawn_weight_c3
+start,9,8,0,0,0,0,0,1.0,0.0,0.0
+exit,4,5,0,0,0,0,0,1.0,1.0,1.0
+combat,9,9,2,4,0,0,0,0.4,0.4,0.5
+treasure,7,5,0,0,1,0,0,0.1,0.2,0.1
+armory,5,8,0,0,1,0,0,0.1,0.2,0.1
+keyroom,6,8,1,2,0,1,0,0.1,0.1,0.1
+ashurn,7,4,0,0,0,0,1,0.2,0.1,0.0
+boss,10,10,0,0,0,0,0,0.0,0.0,1.0
